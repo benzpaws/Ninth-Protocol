@@ -1,69 +1,69 @@
-# NINTH PROTOCOL — "The Dossier"
+# NINTH PROTOCOL  ·  Microsite v3
 
-A single-page premium microsite for QR-code distribution. Designed to feel like opening a confidential document, not browsing a website. Built for GitHub Pages hosting.
+**Time is money. Money cannot buy time. We deal in both.**
 
----
-
-## The design concept
-
-This site does not look like a marketing page — it looks like a confidential dossier being carefully presented. Every choice reinforces the brand DNA:
-
-| Brand DNA | How it shows up in the design |
-|-----------|-------------------------------|
-| **Private banking register** | Mono-spaced metadata, reference numbers, classification stamps |
-| **Discretion as discipline** | No screaming CTAs, no testimonials, no social proof — quiet authority |
-| **Fiduciary, conflict-free** | The Four Tenets are the centrepiece of the page, not service descriptions |
-| **One principal** | Every visitor gets a unique session reference (NP-9XXXXX) — singular by design |
-| **The number "9"** | Reference numbers always begin with 9. The brand mark anchors every section. |
-| **Protocol = procedure** | Seven articles, numbered §I through §VII, like a legal document |
-| **Time as the asset** | Live UTC clock in the header. Timestamps everywhere. |
+A type-driven, information-led microsite designed at private-bank scale. Adaptive responsive — auto-detects device, no toggle needed.
 
 ---
 
-## What's included
+## The concept
+
+This site treats the brand's motto as its conceptual spine. Every design decision flows from it:
+
+- The live UTC clock is not decoration — it is the **subject** of the site
+- Each section is numbered (§I through §VII) like a legal document
+- Each visitor receives a unique session reference (`NP-9XXXXX`) — the leading `9` is the brand motif
+- The motto opens and closes the site — once in the hero, once in the standard, once in the footer
+- The §V Comparison Table is the credibility moment: a structural, factual comparison versus commission-based concierges
+
+This is closer to a private-bank report than a marketing page. No imagery. No video. Just typography, structure, and information.
+
+---
+
+## Structure
+
+| § | Section | Purpose |
+|---|---------|---------|
+| I | Hero | The motto, massive |
+| II | The Firm | One paragraph + three numbered facts |
+| III | The Difference | Four numbered differentiators |
+| IV | The Mandate | The four disciplines, with detailed scope |
+| V | The Comparison | Side-by-side table: Ninth Protocol vs commission concierges |
+| VI | The Standard | Closing statement that loops back to the motto |
+| VII | Initiate | The inquiry form |
+
+---
+
+## What changed in v3
+
+| Issue | Fixed by |
+|-------|----------|
+| Cursor misalignment | Custom cursor removed entirely — system cursor restored |
+| Logo background mismatch | New inline SVG monogram with transparent background. No more PNG colour-edge issue. |
+| Too dense / too fast | Animation durations doubled. Type scale increased 40%. Whitespace doubled. |
+| No real "difference" content | New §V Comparison section — direct structural comparison with commission concierges |
+| Motto buried | Motto is now the hero, the closing line, and the footer signature |
+| Mobile toggle requested | Removed in favour of adaptive responsive (best practice) |
+| Jekyll processing issue | Added `.nojekyll` file to prevent GitHub from running Jekyll on the HTML |
+
+---
+
+## File structure
 
 ```
 ninth-protocol-site/
-├── index.html         ← Full page markup
-├── styles.css         ← The Dossier design system
-├── script.js          ← Animations, cursor, form, clock, references
-├── README.md          ← This file
+├── .nojekyll              ← Tells GitHub Pages to serve files as-is
+├── index.html             ← Full page markup
+├── styles.css             ← Design system
+├── script.js              ← Animations, clock, form, references
+├── README.md              ← This file
 └── assets/
-    ├── np-monogram.png       ← NP monogram (indigo)
-    ├── np-lockup-square.png  ← Full lockup on indigo
-    ├── np-lockup-wide.png    ← Wide banner version
-    └── np-black.png          ← Lockup on black
+    ├── np-mark.svg            ← NEW: transparent SVG monogram (use this)
+    ├── np-monogram.png        ← Original PNG (still used for favicon fallback)
+    ├── np-lockup-square.png   ← Social sharing image
+    ├── np-lockup-wide.png     ← Banner version
+    └── np-black.png           ← Logo on black
 ```
-
----
-
-## Animation & interaction highlights
-
-### Page load
-- **Preloader sequence** (1.8s): The NP monogram fades up, three lines of mono-spaced "system text" cascade in showing `SYS: INITIALISING PROTOCOL`, `REF: NP-9XXXXX`, `STAT: VERIFYING → READY`. A gold rule completes underneath. Feels like a private terminal connecting.
-- **Hero reveal**: The "NINTH PROTOCOL" wordmark assembles letter-by-letter. Headlines slide up in masked containers (each line reveals from a clean horizontal cut). Subhead and CTAs fade in with stagger.
-
-### Scroll experience
-- **Scroll progress bar** — A 1px gold rule across the top fills as you scroll.
-- **Top bar auto-hides** on scroll down, reappears on scroll up.
-- **Live UTC clock** in the header updates every second.
-- **Session reference** (e.g. `NP-9K7XQR`) — unique per visitor, generated client-side, displayed in header, footer, and embedded in form submissions.
-- **Side index** (desktop, ≥1280px) — Roman-numeral chapter list on the right edge. Active chapter highlights with an expanding gold rule as you scroll.
-- **Article stamps** — Large faded §I, §II, §III watermarks in the corner of each section.
-- **Parallax** — The hero's NP monogram drifts at 0.25x scroll speed.
-- **Reveal-on-scroll** — Tenets, capabilities, definitions all fade and rise in as they enter the viewport.
-
-### Hover & cursor (desktop)
-- **Custom cursor** — A 4px gold dot with a trailing 28px ring. On interactive elements, the dot dissolves and the ring expands to 56px.
-- **Magnetic elements** — Buttons, brand mark, key links physically lean toward your cursor when you approach them. Subtle, ~0.18x offset.
-- **Capability cards** — On hover, indigo sweeps up from the bottom and text inverts to gold/white. The accent rule turns gold. The icon stroke turns gold.
-- **Form fields** — The gold rule under each field draws from left to right when focused (and stays subtly lit if filled).
-
-### Form
-- Each field is numbered (01, 02, 03…) like a document section.
-- Form header shows live `Reference` (NP-9XXXXX), `Form` ID (§VII.01), and pulsing `Status: Awaiting`.
-- Submit button hover sweeps gold from below.
-- On success, status confirms with the reference number.
 
 ---
 
@@ -71,142 +71,91 @@ ninth-protocol-site/
 
 - **Deep Indigo:** `#2A2354` — primary
 - **Indigo Deep:** `#1B1638` — section backgrounds
-- **Indigo Night:** `#0E0B22` — hero, closing, preloader
+- **Indigo Night:** `#0E0B22` — hero, closing
+- **Indigo Ink:** `#07051A` — footer
 - **Muted Gold:** `#C0A11E` — accents, rules, type
-- **Gold Soft:** `#D4B84A` — hover states, pull quotes
+- **Gold Soft:** `#D4B84A` — italic emphasis, pull quotes
 - **Paper:** `#F8F5EF` — light section backgrounds
-- **Off-white:** `#F5F2EC` — body text on dark
+- **Off-white:** `#F5F2EC` — body text on dark backgrounds
 
 ## Typography
 
-- **Cormorant Garamond** — Serif headlines, body, quotes, hero
-- **Inter** — Sans-serif UI labels, buttons, navigation
-- **JetBrains Mono** — Metadata, reference numbers, timestamps, classification stamps
+- **Cormorant Garamond** — All display, headlines, body, quotes
+- **Inter** — UI labels, buttons, navigation
+- **JetBrains Mono** — Metadata, reference numbers, timestamps
 
 ---
 
-## Step 1 — Deploy to GitHub Pages
+## Deployment
 
-### Option A: GitHub web interface (easiest)
+### Step 1 — Upload to GitHub Pages
 
-1. Go to [github.com/new](https://github.com/new) — create a public repository named `ninth-protocol`.
-2. Click **Add file → Upload files**. Drag the entire contents of `ninth-protocol-site/` into the upload area.
-3. Commit the upload.
-4. Go to **Settings → Pages**. Under **Source**, select branch `main` and folder `/ (root)`. Save.
-5. Wait 1–2 minutes. Your site will be live at:
-   ```
-   https://<your-username>.github.io/ninth-protocol/
-   ```
+Critical: when uploading, drag the **contents** of the `ninth-protocol-site/` folder into the repo root — not the folder itself. Your repo should look like:
 
-### Option B: Git CLI
-
-```bash
-cd ninth-protocol-site
-git init && git add . && git commit -m "Ninth Protocol — initial commit"
-git branch -M main
-git remote add origin https://github.com/<your-username>/ninth-protocol.git
-git push -u origin main
+```
+Ninth-Protocol/             ← repo root
+├── .nojekyll
+├── index.html
+├── styles.css
+├── script.js
+├── README.md
+└── assets/
 ```
 
----
+If you see `Ninth-Protocol/ninth-protocol-site/index.html`, that's wrong — move the files up one level.
 
-## Step 2 — Connect a custom subdomain (recommended)
+### Step 2 — Enable GitHub Pages
 
-Use a subdomain of your existing domain, e.g. `qr.ninthprotocol.eu`:
+Settings → Pages → Source: `main` branch, `/ (root)` folder → Save.
+Wait 1–2 minutes. Live at `https://<username>.github.io/Ninth-Protocol/`
 
-1. In your GitHub repo: **Settings → Pages → Custom domain** — enter `qr.ninthprotocol.eu` and Save.
-2. In your domain DNS settings, add a CNAME record:
-   - **Name:** `qr`
-   - **Value:** `<your-username>.github.io`
-3. Wait 10–30 minutes for DNS propagation.
-4. Return to GitHub Pages settings and tick **Enforce HTTPS**.
+### Step 3 — Connect a subdomain (optional)
 
----
+Add a CNAME record on `qr.ninthprotocol.eu` pointing to `<username>.github.io`. Then in Settings → Pages, enter the custom domain and enforce HTTPS.
 
-## Step 3 — Make the form actually send emails
+### Step 4 — Make the form send emails
 
-The form has two modes built in.
+1. Go to [web3forms.com](https://web3forms.com)
+2. Enter `JRughooputh@ninthprotocol.eu` to get your access key
+3. Open `index.html`, find `YOUR_WEB3FORMS_ACCESS_KEY`, replace with your key
+4. Commit. Done.
 
-### Mode 1 — mailto fallback (works immediately)
-
-No setup. When someone submits the form, their default email client opens with a pre-filled email to `JRughooputh@ninthprotocol.eu` — fully formatted with reference number, category, contact details, and context.
-
-### Mode 2 — Web3Forms (fully automatic — recommended)
-
-1. Go to [web3forms.com](https://web3forms.com) — no signup required.
-2. Enter `JRughooputh@ninthprotocol.eu` in the access-key generator on their homepage.
-3. Check your inbox for the access key (a long string of letters/numbers).
-4. Open `index.html`. Find:
-   ```html
-   <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-   ```
-5. Replace `YOUR_WEB3FORMS_ACCESS_KEY` with the key.
-6. Save and re-upload to GitHub.
-
-Now every form submission arrives in your inbox automatically, with the unique reference number, complete contact details, category, and context — fully formatted.
-
-**Free tier:** 250 submissions/month.
+Until you do this, the form falls back to a `mailto:` link that opens the user's email client pre-filled.
 
 ---
 
-## Step 4 — Generate the QR code for your business card
+## QR code for business cards
 
-1. Go to [qrcode-monkey.com](https://www.qrcode-monkey.com/) or similar.
-2. Paste your live URL (either `<username>.github.io/ninth-protocol/` or `qr.ninthprotocol.eu`).
-3. **Recommended styling:**
-   - Foreground colour: `#2A2354` (Deep Indigo)
-   - Background: white or `#F8F5EF` (Paper)
-   - Centre logo: upload `assets/np-monogram.png`
-   - Dot style: rounded for refinement, or square for severity — both work
-4. Download as PNG and SVG. Send the SVG to your card printer for crisp output.
+Once live, generate a QR with:
 
----
+- **Foreground:** `#2A2354` (Deep Indigo)
+- **Background:** white or `#F8F5EF` (Paper)
+- **Centre logo:** `assets/np-mark.svg` (or `np-monogram.png`)
 
-## Customising
-
-### Change colours
-Edit the `:root` variables at the top of `styles.css`.
-
-### Change copy
-All copy lives in `index.html` — each section is bracketed with comments like:
-```html
-<!-- §III — ETHOS  ·  THE FOUR TENETS -->
-```
-
-### Add or remove sections
-Each section follows a pattern: section ID, article stamp, container, reveal classes. Copy any existing block and modify.
-
-### Adjust animation speeds
-Speed up or slow down via the CSS custom properties:
-```css
---dur-fast: 0.28s;
---dur-base: 0.5s;
---dur-slow: 0.9s;
-```
-
-### Disable the preloader
-Comment out the `<div class="preloader">` block in `index.html`. The page will load instantly.
+Recommended generator: [qrcode-monkey.com](https://www.qrcode-monkey.com/)
 
 ---
 
-## Performance & accessibility
+## Adaptive responsive behaviour
 
-- **Lighthouse-ready** — Lazy assets, hardware-accelerated animations, no blocking scripts.
-- **Reduced motion** — Visitors with `prefers-reduced-motion: reduce` skip the preloader and all transitions.
-- **Mobile-first** — Optimised for QR-scan viewing on phones. All hover effects gracefully disable on touch devices.
-- **Keyboard accessible** — Tab navigation, focus states, ARIA labels throughout.
-- **No tracking, no cookies** — privacy-respecting by default.
+One codebase, three behaviours:
+
+- **Desktop (>1024px):** Full Pagani-scale typography, side-by-side grids, comparison table in columns
+- **Tablet (720–1024px):** Single column layouts, smaller scale, still rich
+- **Mobile (<720px):** Stacked everything, comparison table becomes labelled cards, drawer menu, larger touch targets
+
+No device detection in JavaScript. Pure CSS media queries. Loads instantly on every device.
 
 ---
 
 ## Browser support
 
-Tested on:
 - Safari 15+ (iOS, macOS)
 - Chrome 100+
 - Firefox 100+
 - Edge 100+
-- Mobile browsers (iOS Safari, Chrome Android)
+
+Reduced-motion: respected — preloader and animations skipped for users who prefer no motion.
 
 ---
 
