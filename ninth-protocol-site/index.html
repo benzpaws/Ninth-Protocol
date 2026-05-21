@@ -6,252 +6,478 @@
   <meta name="theme-color" content="#2A2354" />
 
   <title>Ninth Protocol — Private Procurement</title>
-  <meta name="description" content="Ninth Protocol is a private procurement firm acting for one principal only. Conflict-free. Discreet. Accountable." />
+  <meta name="description" content="A private procurement firm acting for one principal only. Conflict-free. Discreet. Accountable." />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Ninth Protocol — Private Procurement" />
   <meta property="og:description" content="We act for one principal only. Yours." />
   <meta property="og:image" content="assets/np-lockup-square.png" />
-  <meta property="og:type" content="website" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/np-monogram.png" />
   <link rel="apple-touch-icon" href="assets/np-lockup-square.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="is-loading">
 
-  <!-- ──────────────  TOP BAR  ────────────── -->
+  <!-- ══════════════════  PRE-LOAD SEQUENCE  ══════════════════ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <img src="assets/np-monogram.png" alt="" />
+      </div>
+      <div class="preloader__lines">
+        <p class="preloader__line" data-line="1">
+          <span class="preloader__label">SYS</span>
+          <span class="preloader__value">INITIALISING PROTOCOL</span>
+        </p>
+        <p class="preloader__line" data-line="2">
+          <span class="preloader__label">REF</span>
+          <span class="preloader__value" id="preloader-ref">NP-—————</span>
+        </p>
+        <p class="preloader__line" data-line="3">
+          <span class="preloader__label">STAT</span>
+          <span class="preloader__value" id="preloader-stat">VERIFYING</span>
+        </p>
+      </div>
+      <div class="preloader__bar">
+        <div class="preloader__bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════  CUSTOM CURSOR (desktop)  ══════════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- ══════════════════  SCROLL PROGRESS  ══════════════════ -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ══════════════════  TOP BAR  ══════════════════ -->
   <header class="topbar">
     <div class="topbar__inner">
-      <a href="#top" class="topbar__brand" aria-label="Ninth Protocol">
-        <img src="assets/np-monogram.png" alt="" class="topbar__monogram" />
+      <a href="#top" class="topbar__brand" data-magnetic aria-label="Ninth Protocol">
+        <img src="assets/np-monogram.png" alt="" class="topbar__mark" />
+        <span class="topbar__name">NINTH PROTOCOL</span>
       </a>
+
+      <div class="topbar__meta">
+        <div class="topbar__meta-row">
+          <span class="topbar__meta-label">UTC</span>
+          <span class="topbar__meta-value" id="utcClock">——:——:——</span>
+        </div>
+        <div class="topbar__meta-row">
+          <span class="topbar__meta-label">REF</span>
+          <span class="topbar__meta-value" id="sessionRef">NP-——————</span>
+        </div>
+      </div>
+
       <nav class="topbar__nav" aria-label="Primary">
-        <a href="#ethos">Ethos</a>
-        <a href="#access">Access</a>
-        <a href="#inquire">Inquire</a>
+        <a href="#ethos" data-magnetic>§II Ethos</a>
+        <a href="#access" data-magnetic>§III Access</a>
+        <a href="#inquire" data-magnetic class="topbar__nav-cta">§IV Initiate →</a>
       </nav>
+
+      <button class="topbar__menu" id="menuToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
+  <!-- ══════════════════  MOBILE DRAWER  ══════════════════ -->
+  <nav class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__inner">
+      <div class="drawer__meta">
+        <p><span>REF</span><span id="drawerRef">NP-——————</span></p>
+        <p><span>UTC</span><span id="drawerClock">——:——:——</span></p>
+      </div>
+      <ul class="drawer__nav">
+        <li><a href="#top" data-section="I">§I — Index</a></li>
+        <li><a href="#ethos" data-section="II">§II — Ethos</a></li>
+        <li><a href="#access" data-section="III">§III — Access Points</a></li>
+        <li><a href="#inquire" data-section="IV">§IV — Initiate Protocol</a></li>
+      </ul>
+      <div class="drawer__contact">
+        <p class="drawer__line">Introductions by appointment.</p>
+        <a href="mailto:JRughooputh@ninthprotocol.eu" class="drawer__email">JRughooputh@ninthprotocol.eu</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════  SIDE INDEX (desktop)  ══════════════════ -->
+  <aside class="side-index" id="sideIndex" aria-hidden="true">
+    <div class="side-index__bar"></div>
+    <ul>
+      <li data-target="hero"><a href="#top"><span>I</span><em>Hero</em></a></li>
+      <li data-target="definition"><a href="#definition"><span>II</span><em>Protocol</em></a></li>
+      <li data-target="ethos"><a href="#ethos"><span>III</span><em>Ethos</em></a></li>
+      <li data-target="quote"><a href="#quote"><span>IV</span><em>Mandate</em></a></li>
+      <li data-target="access"><a href="#access"><span>V</span><em>Access</em></a></li>
+      <li data-target="closing"><a href="#closing"><span>VI</span><em>Standard</em></a></li>
+      <li data-target="inquire"><a href="#inquire"><span>VII</span><em>Initiate</em></a></li>
+    </ul>
+  </aside>
+
   <main id="top">
 
-    <!-- ──────────────  HERO  ────────────── -->
-    <section class="hero">
+    <!-- ════════════════════════════════════════════════════════
+         §I — HERO  ·  "OPEN THE DOSSIER"
+         ════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero" data-section="hero">
+      <div class="hero__bg">
+        <div class="hero__bg-monogram">
+          <img src="assets/np-monogram.png" alt="" />
+        </div>
+        <div class="hero__bg-grain"></div>
+      </div>
+
+      <div class="hero__header">
+        <span class="article-num">§I</span>
+        <div class="hero__header-meta">
+          <span>CONFIDENTIAL</span>
+          <span class="dot"></span>
+          <span>PRIVATE CIRCULATION</span>
+        </div>
+      </div>
+
       <div class="hero__inner">
-        <img src="assets/np-monogram.png" alt="Ninth Protocol monogram" class="hero__mark" />
-        <div class="hero__wordmark">NINTH PROTOCOL</div>
-        <div class="hero__divider"></div>
+        <div class="hero__wordmark reveal-stagger">
+          <span>N</span><span>I</span><span>N</span><span>T</span><span>H</span>
+          <span class="gap"></span>
+          <span>P</span><span>R</span><span>O</span><span>T</span><span>O</span><span>C</span><span>O</span><span>L</span>
+        </div>
+
+        <div class="hero__rule"></div>
 
         <h1 class="hero__headline">
-          <span>Private Procurement.</span>
-          <span>No Intermediaries.</span>
-          <span>No Compromises.</span>
+          <span class="reveal-line"><span>Private Procurement.</span></span>
+          <span class="reveal-line"><span>No Intermediaries.</span></span>
+          <span class="reveal-line"><span>No Compromises.</span></span>
         </h1>
 
-        <p class="hero__sub">We act for one principal only. Yours.</p>
-
-        <a href="#inquire" class="hero__cta">
-          <span>Initiate a Mandate</span>
-          <span class="arrow">→</span>
-        </a>
-
-        <p class="hero__note">New clients by referral or application.</p>
-      </div>
-
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="hero__scroll-line"></div>
-      </div>
-    </section>
-
-    <!-- ──────────────  PROTOCOL DEFINITION  ────────────── -->
-    <section class="definition">
-      <div class="definition__inner">
-        <div class="rule rule--center"></div>
-        <p class="definition__word">Protocol <span>(n.)</span></p>
-        <p class="definition__phonetic">/ˈprōdəˌkôl/</p>
-        <p class="definition__meaning">
-          The systematic removal of market noise to ensure a pristine acquisition.
+        <p class="hero__sub reveal-fade">
+          <em>We act for one principal only. Yours.</em>
         </p>
-        <div class="rule rule--center"></div>
+
+        <div class="hero__actions reveal-fade">
+          <a href="#inquire" class="btn btn--gold" data-magnetic>
+            <span class="btn__text">Initiate a Mandate</span>
+            <span class="btn__arrow">→</span>
+            <span class="btn__hover"></span>
+          </a>
+          <a href="#ethos" class="btn btn--ghost" data-magnetic>
+            <span class="btn__text">The Model</span>
+          </a>
+        </div>
       </div>
-    </section>
 
-    <!-- ──────────────  WHAT WE ARE  ────────────── -->
-    <section id="ethos" class="section section--light">
-      <div class="container">
-        <span class="label">What We Are</span>
-        <h2 class="section__title">A firm whose only mandate is yours.</h2>
-
-        <div class="prose">
-          <p>
-            Ninth Protocol is a private procurement firm. We source and secure — vehicles,
-            timepieces, aviation, and extraordinary experiences — on behalf of individuals
-            who expect the matter resolved, not managed.
-          </p>
-          <p>
-            We hold no inventory. We carry no supplier affiliations. We earn no commissions.
-            Our fee comes from one source: the client. That arrangement is not incidental —
-            it is the entire point.
-          </p>
-          <p>
-            When you retain Ninth Protocol, you retain a firm whose only mandate is yours.
-          </p>
+      <div class="hero__footer">
+        <p class="hero__footer-note">New clients by referral or application.</p>
+        <div class="hero__scroll-indicator">
+          <span>Continue</span>
+          <div class="hero__scroll-line"></div>
         </div>
       </div>
     </section>
 
-    <!-- ──────────────  THE FIDUCIARY STANDARD  ────────────── -->
-    <section class="section section--dark">
-      <div class="container">
-        <span class="label label--gold">The Fiduciary Standard</span>
-        <h2 class="section__title section__title--light">
-          The model precedes everything.
-        </h2>
+    <!-- ════════════════════════════════════════════════════════
+         §II — PROTOCOL DEFINITION
+         ════════════════════════════════════════════════════════ -->
+    <section class="definition" id="definition" data-section="definition">
+      <div class="article-stamp" data-stamp="§II"></div>
 
-        <div class="prose prose--light">
-          <p>
-            Most procurement and concierge firms operate on commission. They are compensated,
-            in part, by the suppliers they recommend to you. In that structure, the advice you
-            receive is not independent — it is incentivised.
-          </p>
-          <p>
-            Ninth Protocol does not accept commissions, rebates, or referral fees from any
-            third party. Our fee is agreed directly with the client before any mandate
-            commences. That is the complete arrangement.
-          </p>
-          <p>
-            This is not a differentiating feature. It is a precondition. A fiduciary
-            relationship cannot exist alongside a commission structure. We chose the former,
-            entirely.
-          </p>
+      <div class="definition__inner">
+        <div class="definition__head reveal-on-scroll">
+          <span class="micro-label">Definition</span>
+          <div class="micro-line"></div>
+        </div>
+
+        <p class="definition__word reveal-on-scroll">
+          Protocol <span class="definition__pos">(n.)</span>
+        </p>
+        <p class="definition__phonetic reveal-on-scroll">/ˈprōdəˌkôl/</p>
+
+        <div class="definition__meaning reveal-on-scroll">
+          <span class="quote-mark">"</span>
+          The systematic removal of market noise to ensure a pristine acquisition.
+          <span class="quote-mark">"</span>
+        </div>
+
+        <div class="definition__synonyms reveal-on-scroll">
+          <span>see also:</span>
+          <em>discipline</em><span>·</span>
+          <em>discretion</em><span>·</span>
+          <em>judgement</em><span>·</span>
+          <em>execution</em>
         </div>
       </div>
     </section>
 
-    <!-- ──────────────  PULL QUOTE  ────────────── -->
-    <section class="pullquote">
-      <div class="pullquote__inner">
-        <div class="rule rule--center rule--short"></div>
-        <blockquote>
-          When you engage Ninth Protocol, there is no question of whose interests are being served.
+    <!-- ════════════════════════════════════════════════════════
+         §III — ETHOS  ·  THE MODEL
+         ════════════════════════════════════════════════════════ -->
+    <section class="ethos" id="ethos" data-section="ethos">
+      <div class="article-stamp" data-stamp="§III"></div>
+
+      <div class="container">
+        <div class="ethos__header reveal-on-scroll">
+          <span class="micro-label">Article III · The Model</span>
+          <h2 class="section-title">A firm whose only mandate is yours.</h2>
+        </div>
+
+        <div class="ethos__grid">
+
+          <article class="tenet reveal-on-scroll" data-tenet="01">
+            <div class="tenet__num">01</div>
+            <div class="tenet__head">
+              <h3>The Fiduciary Standard</h3>
+              <div class="tenet__line"></div>
+            </div>
+            <div class="tenet__body">
+              <p>Most procurement firms operate on commission. Their advice is not independent — it is incentivised.</p>
+              <p>Ninth Protocol accepts no commissions, rebates, or referral fees from any third party. Our fee is agreed directly with the client. That is the complete arrangement.</p>
+              <p class="tenet__close"><em>A fiduciary relationship cannot exist alongside a commission structure. We chose the former, entirely.</em></p>
+            </div>
+          </article>
+
+          <article class="tenet reveal-on-scroll" data-tenet="02">
+            <div class="tenet__num">02</div>
+            <div class="tenet__head">
+              <h3>One Principal</h3>
+              <div class="tenet__line"></div>
+            </div>
+            <div class="tenet__body">
+              <p>We serve a deliberately limited number of clients. Complex mandates require full attention. Full attention requires constraint.</p>
+              <p>You are not allocated to an account manager. You have a single point of contact — with the authority to act, and the discretion to do so without involving parties who do not need to know.</p>
+            </div>
+          </article>
+
+          <article class="tenet reveal-on-scroll" data-tenet="03">
+            <div class="tenet__num">03</div>
+            <div class="tenet__head">
+              <h3>Conflict-Free by Design</h3>
+              <div class="tenet__line"></div>
+            </div>
+            <div class="tenet__body">
+              <p>We hold no preferred supplier relationships, no inventory positions, and no financial interest in any outcome other than the result you wanted.</p>
+              <p>We will recommend against a purchase when the evidence does not support it. We will tell you when a price is wrong, when provenance is uncertain, when a better option exists elsewhere.</p>
+              <p class="tenet__close"><em>That counsel is what you are retaining. Not execution alone — judgement.</em></p>
+            </div>
+          </article>
+
+          <article class="tenet reveal-on-scroll" data-tenet="04">
+            <div class="tenet__num">04</div>
+            <div class="tenet__head">
+              <h3>Discretion as Discipline</h3>
+              <div class="tenet__line"></div>
+            </div>
+            <div class="tenet__body">
+              <p>We do not discuss our clients. We do not confirm engagements. We do not name references.</p>
+              <p>Discretion at this level is not a promise made in copy. It is enforced — through limited documentation, controlled access, and a standing non-disclosure that extends beyond the mandate.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════
+         §IV — PULL QUOTE
+         ════════════════════════════════════════════════════════ -->
+    <section class="quote-section" id="quote" data-section="quote">
+      <div class="article-stamp article-stamp--light" data-stamp="§IV"></div>
+
+      <div class="quote-section__inner">
+        <div class="rule-draw rule-draw--top reveal-on-scroll"></div>
+
+        <blockquote class="quote reveal-on-scroll">
+          <p>
+            <span class="quote-open">"</span>When you engage Ninth Protocol, there is no question of whose interests are being served.<span class="quote-close">"</span>
+          </p>
+          <footer>
+            <span class="quote-attribution">— Operating Principle 9.1</span>
+          </footer>
         </blockquote>
-        <div class="rule rule--center rule--short"></div>
+
+        <div class="rule-draw rule-draw--bottom reveal-on-scroll"></div>
       </div>
     </section>
 
-    <!-- ──────────────  ACCESS POINTS  ────────────── -->
-    <section id="access" class="section section--light">
+    <!-- ════════════════════════════════════════════════════════
+         §V — ACCESS POINTS
+         ════════════════════════════════════════════════════════ -->
+    <section class="access" id="access" data-section="access">
+      <div class="article-stamp" data-stamp="§V"></div>
+
       <div class="container">
-        <span class="label">Access Points</span>
-        <h2 class="section__title">A single point of contact for complex requirements.</h2>
-
-        <div class="capabilities">
-          <article class="capability">
-            <div class="capability__num">01</div>
-            <h3>Automotive &amp; Aviation</h3>
-            <p>
-              Off-market hypercars. JDM acquisitions. Coachbuilt commissions. Private aircraft
-              acquisition and charter. We source what is not publicly available.
-            </p>
-          </article>
-
-          <article class="capability">
-            <div class="capability__num">02</div>
-            <h3>Rare Horology &amp; Collectibles</h3>
-            <p>
-              Reference 5711. Royal Oak 15202. RM 27-04. We acquire where the constraint is
-              not budget but access — with the discretion that assets of this nature require.
-            </p>
-          </article>
-
-          <article class="capability">
-            <div class="capability__num">03</div>
-            <h3>Experiences &amp; Access</h3>
-            <p>
-              Invitation-only events. Itineraries that cannot be booked. Introductions that
-              cannot be requested. We open the door.
-            </p>
-          </article>
-
-          <article class="capability">
-            <div class="capability__num">04</div>
-            <h3>Logistics &amp; Project Direction</h3>
-            <p>
-              Bespoke builds. Cross-border transport of high-value assets. White-glove
-              management from brief to completion.
-            </p>
-          </article>
+        <div class="access__header reveal-on-scroll">
+          <span class="micro-label">Article V · Capabilities</span>
+          <h2 class="section-title">A single point of contact for complex requirements.</h2>
         </div>
+
+        <div class="access__grid">
+
+          <article class="capability reveal-on-scroll" data-cap="01">
+            <header class="capability__head">
+              <span class="capability__num">01</span>
+              <div class="capability__bar"></div>
+              <span class="capability__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M3 14h18M5 14l2-6h10l2 6M7 14v3M17 14v3M9 11h6"/>
+                </svg>
+              </span>
+            </header>
+            <h3>Automotive &amp; Aviation</h3>
+            <p>Off-market hypercars. JDM acquisitions. Coachbuilt commissions. Private aircraft and discreet charter. We source what is not publicly available.</p>
+          </article>
+
+          <article class="capability reveal-on-scroll" data-cap="02">
+            <header class="capability__head">
+              <span class="capability__num">02</span>
+              <div class="capability__bar"></div>
+              <span class="capability__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3 2"/>
+                </svg>
+              </span>
+            </header>
+            <h3>Rare Horology &amp; Collectibles</h3>
+            <p>Reference 5711. Royal Oak 15202. RM 27-04. Acquired where the constraint is not budget but access — with the discretion that assets of this nature require.</p>
+          </article>
+
+          <article class="capability reveal-on-scroll" data-cap="03">
+            <header class="capability__head">
+              <span class="capability__num">03</span>
+              <div class="capability__bar"></div>
+              <span class="capability__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M4 8h16M4 8l8-5 8 5M6 8v12h12V8M10 20v-6h4v6"/>
+                </svg>
+              </span>
+            </header>
+            <h3>Experiences &amp; Access</h3>
+            <p>Invitation-only events. Itineraries that cannot be booked. Introductions that cannot be requested. We open the door.</p>
+          </article>
+
+          <article class="capability reveal-on-scroll" data-cap="04">
+            <header class="capability__head">
+              <span class="capability__num">04</span>
+              <div class="capability__bar"></div>
+              <span class="capability__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="3" y="6" width="18" height="14" rx="1"/>
+                  <path d="M3 10h18M9 6V4h6v2"/>
+                </svg>
+              </span>
+            </header>
+            <h3>Logistics &amp; Project Direction</h3>
+            <p>Bespoke builds. Restorations. Cross-border transport of high-value assets. White-glove management from brief to completion.</p>
+          </article>
+
+        </div>
+
+        <p class="access__closing reveal-on-scroll">
+          Every mandate operates under the same terms. <em>One client. One mandate. Zero conflicts.</em>
+        </p>
       </div>
     </section>
 
-    <!-- ──────────────  CLOSING STATEMENT  ────────────── -->
-    <section class="closing">
+    <!-- ════════════════════════════════════════════════════════
+         §VI — CLOSING STATEMENT  ·  THE STANDARD
+         ════════════════════════════════════════════════════════ -->
+    <section class="closing" id="closing" data-section="closing">
+      <div class="article-stamp article-stamp--light" data-stamp="§VI"></div>
+
       <div class="closing__inner">
-        <h2 class="closing__headline">
+        <div class="closing__rule reveal-on-scroll"></div>
+
+        <p class="closing__overline reveal-on-scroll">The Standard</p>
+
+        <h2 class="closing__headline reveal-on-scroll">
           The standard does not vary by mandate size.
         </h2>
-        <p class="closing__sub">
-          Whether the assignment is a single watch or a private aircraft transaction, the
-          protocol is the same. Conflict-free. Discreet. Accountable to one principal only.
+
+        <p class="closing__sub reveal-on-scroll">
+          Whether the assignment is a single watch or a private aircraft transaction, the protocol is the same.
         </p>
-        <p class="closing__caption">Introductions by appointment.</p>
+
+        <div class="closing__pillars reveal-on-scroll">
+          <span>Conflict-free.</span>
+          <span class="dot"></span>
+          <span>Discreet.</span>
+          <span class="dot"></span>
+          <span>Accountable to one principal only.</span>
+        </div>
+
+        <div class="closing__rule reveal-on-scroll"></div>
+
+        <p class="closing__caption reveal-on-scroll">Introductions by appointment.</p>
       </div>
     </section>
 
-    <!-- ──────────────  INQUIRY FORM  ────────────── -->
-    <section id="inquire" class="form-section">
-      <div class="container container--narrow">
-        <span class="label label--gold">Inquire</span>
-        <h2 class="section__title section__title--light">Initiate a Mandate</h2>
+    <!-- ════════════════════════════════════════════════════════
+         §VII — INITIATE PROTOCOL  ·  THE FORM
+         ════════════════════════════════════════════════════════ -->
+    <section class="inquire" id="inquire" data-section="inquire">
+      <div class="article-stamp" data-stamp="§VII"></div>
 
-        <p class="form-section__intro">
-          All inquiries are reviewed within 24 hours. If your mandate falls within our scope
-          and we have capacity, you will receive a direct response. What you share here is
-          held in confidence.
-        </p>
+      <div class="inquire__inner">
+        <div class="inquire__header reveal-on-scroll">
+          <span class="micro-label">Article VII · The Approach</span>
+          <h2 class="section-title">Initiate a Mandate.</h2>
+          <p class="inquire__intro">
+            All inquiries are reviewed within 24 hours. If your mandate falls within our scope and we have capacity, you will receive a direct response. What you share here is held in confidence.
+          </p>
+        </div>
 
-        <form id="inquiry-form" class="form" novalidate>
-          <!-- Web3Forms hidden access key — REPLACE WITH YOUR ACCESS KEY -->
+        <form id="inquiry-form" class="form reveal-on-scroll" novalidate>
           <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
           <input type="hidden" name="subject" value="New Inquiry — ninthprotocol.eu" />
           <input type="hidden" name="from_name" value="Ninth Protocol Website" />
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+          <input type="hidden" name="reference" id="formReference" value="" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
-          <div class="form__row form__row--two">
+          <div class="form__meta">
+            <div class="form__meta-item"><span>Reference</span><strong id="formRefDisplay">NP-——————</strong></div>
+            <div class="form__meta-item"><span>Form</span><strong>§VII.01</strong></div>
+            <div class="form__meta-item"><span>Status</span><strong class="pulse">Awaiting</strong></div>
+          </div>
+
+          <div class="form__grid">
             <div class="form__field">
-              <label for="firstName">First Name</label>
+              <label for="firstName"><span class="form__num">01</span>First Name</label>
               <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+              <div class="form__rule"></div>
             </div>
             <div class="form__field">
-              <label for="lastName">Last Name</label>
+              <label for="lastName"><span class="form__num">02</span>Last Name</label>
               <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+              <div class="form__rule"></div>
             </div>
           </div>
 
           <div class="form__field">
-            <label for="email">Email Address</label>
+            <label for="email"><span class="form__num">03</span>Email Address</label>
             <input type="email" id="email" name="email" required autocomplete="email" />
+            <div class="form__rule"></div>
           </div>
 
           <div class="form__field">
-            <label for="phone">Phone <span class="optional">(optional)</span></label>
+            <label for="phone"><span class="form__num">04</span>Phone <span class="optional">— optional</span></label>
             <input type="tel" id="phone" name="phone" autocomplete="tel" />
+            <div class="form__rule"></div>
           </div>
 
           <div class="form__field">
-            <label for="nature">Nature of Inquiry</label>
+            <label for="nature"><span class="form__num">05</span>Nature of Inquiry</label>
             <select id="nature" name="nature" required>
-              <option value="" disabled selected>Select a category</option>
+              <option value="" disabled selected>— Select a category —</option>
               <option value="Automotive">Automotive</option>
               <option value="Aviation">Aviation</option>
               <option value="Horology">Horology</option>
@@ -259,17 +485,31 @@
               <option value="Logistics">Logistics</option>
               <option value="Other">Other</option>
             </select>
+            <div class="form__rule"></div>
           </div>
 
           <div class="form__field">
-            <label for="context">Brief Context</label>
-            <textarea id="context" name="context" rows="5" required placeholder="A sentence or two is sufficient. Scope, timing, and any relevant constraints."></textarea>
+            <label for="context"><span class="form__num">06</span>Brief Context</label>
+            <textarea id="context" name="context" rows="5" required placeholder="Scope, timing, and any relevant constraints. A sentence or two is sufficient."></textarea>
+            <div class="form__rule"></div>
           </div>
 
-          <button type="submit" class="form__submit">
-            <span>Initiate Protocol</span>
-            <span class="arrow">→</span>
-          </button>
+          <div class="form__footer">
+            <button type="submit" class="btn btn--gold btn--lg" id="submitBtn" data-magnetic>
+              <span class="btn__text">Initiate Protocol</span>
+              <span class="btn__arrow">→</span>
+              <span class="btn__hover"></span>
+            </button>
+            <p class="form__assurance">
+              <span class="lock-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <rect x="3" y="7" width="10" height="7" rx="1"/>
+                  <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+                </svg>
+              </span>
+              Held in confidence. No third-party disclosure.
+            </p>
+          </div>
 
           <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
         </form>
@@ -278,25 +518,51 @@
 
   </main>
 
-  <!-- ──────────────  FOOTER  ────────────── -->
+  <!-- ══════════════════  FOOTER  ══════════════════ -->
   <footer class="footer">
+    <div class="footer__bar"></div>
+
     <div class="footer__inner">
-      <div class="footer__brand">
-        <img src="assets/np-monogram.png" alt="Ninth Protocol" class="footer__mark" />
+      <div class="footer__col footer__col--brand">
+        <img src="assets/np-monogram.png" alt="" class="footer__mark" />
         <p class="footer__name">NINTH PROTOCOL</p>
         <p class="footer__tag">Private Procurement</p>
       </div>
 
-      <div class="footer__contact">
+      <div class="footer__col footer__col--contact">
+        <p class="footer__overline">Contact</p>
         <p class="footer__line">Introductions by appointment.</p>
-        <a href="mailto:JRughooputh@ninthprotocol.eu" class="footer__email">
+        <a href="mailto:JRughooputh@ninthprotocol.eu" class="footer__email" data-magnetic>
           JRughooputh@ninthprotocol.eu
         </a>
       </div>
 
-      <div class="footer__meta">
-        <p>© <span id="year"></span> Ninth Protocol OÜ</p>
-        <p class="footer__small">Estonia · International Holding Entity</p>
+      <div class="footer__col footer__col--nav">
+        <p class="footer__overline">Articles</p>
+        <ul>
+          <li><a href="#hero">§I — Hero</a></li>
+          <li><a href="#ethos">§III — Ethos</a></li>
+          <li><a href="#access">§V — Access</a></li>
+          <li><a href="#inquire">§VII — Initiate</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--meta">
+        <p class="footer__overline">Registration</p>
+        <p>Ninth Protocol OÜ</p>
+        <p>Estonia · International Holding Entity</p>
+        <p class="footer__small">© <span id="year"></span> · All rights reserved</p>
+      </div>
+    </div>
+
+    <div class="footer__sub">
+      <div class="footer__sub-inner">
+        <span>Session reference</span>
+        <span id="footerRef">NP-——————</span>
+        <span class="dot"></span>
+        <span id="footerClock">UTC ——:——:——</span>
+        <span class="dot"></span>
+        <span>Document classification: PRIVATE</span>
       </div>
     </div>
   </footer>
