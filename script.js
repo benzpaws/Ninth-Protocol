@@ -27,12 +27,6 @@
   if (formRefInput) formRefInput.value = sessionRef;
 
   // ─────────────────────────────────────────────────────────────────────
-  // Year in footer
-  // ─────────────────────────────────────────────────────────────────────
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // ─────────────────────────────────────────────────────────────────────
   // Preloader
   // ─────────────────────────────────────────────────────────────────────
   function dismissPreloader() {
