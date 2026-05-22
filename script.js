@@ -7,18 +7,8 @@
   'use strict';
 
   // ─────────────────────────────────────────────────────────────────────
-  // SVG monogram — inlined so it inherits currentColor and has no PNG bg
+  // Logo is rendered as a real PNG image directly in HTML — no injection needed
   // ─────────────────────────────────────────────────────────────────────
-  const SVG_MARK = `
-<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="square" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <line x1="22" y1="16" x2="22" y2="104"/>
-  <line x1="22" y1="16" x2="72" y2="104"/>
-  <line x1="72" y1="16" x2="72" y2="104"/>
-  <path d="M 72 16 L 86 16 A 25 25 0 0 1 86 66 L 72 66" stroke-linejoin="round"/>
-</svg>`.trim();
-
-  function injectMark(el) { if (el) el.innerHTML = SVG_MARK; }
-  ['preloaderMark', 'topbarMark', 'footerMark'].forEach(id => injectMark(document.getElementById(id)));
 
   // ─────────────────────────────────────────────────────────────────────
   // Session reference  ·  NP-9XXXXX  ·  the leading 9 is the brand motif
