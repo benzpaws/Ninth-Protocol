@@ -27,6 +27,12 @@
   if (formRefInput) formRefInput.value = sessionRef;
 
   // ─────────────────────────────────────────────────────────────────────
+  // Footer year — updates the second year of the copyright range
+  // ─────────────────────────────────────────────────────────────────────
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // ─────────────────────────────────────────────────────────────────────
   // Preloader
   // ─────────────────────────────────────────────────────────────────────
   function dismissPreloader() {
