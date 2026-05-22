@@ -6,14 +6,15 @@
   <meta name="theme-color" content="#0E0B22" />
 
   <title>Ninth Protocol — Private Procurement</title>
-  <meta name="description" content="Time is money. Money cannot buy time. Ninth Protocol is a private procurement firm acting for one principal only — yours." />
+  <meta name="description" content="For those who answer to no one. Ninth Protocol is a private procurement firm for UHNW individuals and family offices. Conflict-free, fiduciary, discreet." />
 
   <meta property="og:title" content="Ninth Protocol — Private Procurement" />
-  <meta property="og:description" content="Time is money. Money cannot buy time. We deal in both." />
+  <meta property="og:description" content="For those who answer to no one." />
   <meta property="og:image" content="assets/np-lockup-square.png" />
+  <meta property="og:type" content="website" />
 
-  <link rel="icon" type="image/png" href="assets/np-mark.png" />
-  <link rel="alternate icon" type="image/png" href="assets/np-monogram.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/np-mark.svg" />
+  <link rel="alternate icon" type="image/png" href="assets/np-mark.png" />
   <link rel="apple-touch-icon" href="assets/np-lockup-square.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,11 +28,10 @@
   <!-- ══════════  PRELOADER  ══════════ -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__inner">
-      <div class="preloader__mark"><img src="assets/np-mark.png" alt="" /></div>
-      <div class="preloader__meta">
-        <span class="preloader__label">REF</span>
-        <span class="preloader__value" id="preloader-ref">NP-—————</span>
+      <div class="preloader__mark">
+        <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
       </div>
+      <div class="preloader__name">NINTH PROTOCOL</div>
       <div class="preloader__bar"><div class="preloader__bar-fill"></div></div>
     </div>
   </div>
@@ -43,22 +43,19 @@
   <header class="topbar" id="topbar">
     <div class="topbar__inner">
       <a href="#top" class="topbar__brand" aria-label="Ninth Protocol">
-        <span class="topbar__mark"><img src="assets/np-mark.png" alt="" /></span>
+        <span class="topbar__mark">
+          <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+        </span>
         <span class="topbar__name">NINTH PROTOCOL</span>
       </a>
 
-      <div class="topbar__center">
-        <div class="topbar__clock">
-          <span class="clock-label">UTC</span>
-          <span class="clock-time" id="utcClock">——:——:——</span>
-        </div>
-      </div>
-
       <nav class="topbar__nav" aria-label="Primary">
-        <a href="#firm">§II</a>
-        <a href="#difference">§III</a>
-        <a href="#mandate">§IV</a>
-        <a href="#inquire" class="topbar__cta">Initiate <span class="arrow">→</span></a>
+        <a href="#model" class="topbar__link">§II <em>The Model</em></a>
+        <a href="#capabilities" class="topbar__link">§III <em>Capabilities</em></a>
+        <a href="#contact" class="topbar__cta">
+          <span>Contact</span>
+          <span class="arrow">→</span>
+        </a>
       </nav>
 
       <button class="topbar__menu" id="menuToggle" aria-label="Menu" aria-expanded="false">
@@ -70,623 +67,380 @@
   <!-- ══════════  MOBILE DRAWER  ══════════ -->
   <nav class="drawer" id="drawer" aria-hidden="true">
     <div class="drawer__inner">
-      <div class="drawer__meta">
-        <div><span>REF</span><span id="drawerRef">NP-——————</span></div>
-        <div><span>UTC</span><span id="drawerClock">——:——:——</span></div>
+      <div class="drawer__head">
+        <span class="drawer__mark">
+          <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+        </span>
+        <span class="drawer__name">NINTH PROTOCOL</span>
       </div>
+
       <ul class="drawer__nav">
-        <li><a href="#top"><span>§I</span><em>Hero</em></a></li>
-        <li><a href="#firm"><span>§II</span><em>The Firm</em></a></li>
-        <li><a href="#difference"><span>§III</span><em>The Difference</em></a></li>
-        <li><a href="#mandate"><span>§IV</span><em>The Mandate</em></a></li>
-        <li><a href="#comparison"><span>§V</span><em>Versus Concierge</em></a></li>
-        <li><a href="#standard"><span>§VI</span><em>The Standard</em></a></li>
-        <li><a href="#inquire"><span>§VII</span><em>Initiate</em></a></li>
+        <li><a href="#top"><span>§I</span><em>Identity</em></a></li>
+        <li><a href="#model"><span>§II</span><em>The Model</em></a></li>
+        <li><a href="#capabilities"><span>§III</span><em>Capabilities</em></a></li>
+        <li><a href="#contact"><span>§IV</span><em>Contact</em></a></li>
       </ul>
+
       <div class="drawer__contact">
-        <p>Introductions by appointment.</p>
-        <a href="mailto:JRughooputh@ninthprotocol.eu">JRughooputh@ninthprotocol.eu</a>
+        <p class="drawer__line">Reach us directly.</p>
+        <a href="mailto:JRughooputh@ninthprotocol.eu" class="drawer__btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2"/></svg>
+          <span>JRughooputh@ninthprotocol.eu</span>
+        </a>
+        <a href="https://wa.me/14372490909?text=Hello%20Ninth%20Protocol%20%E2%80%94%20I%27d%20like%20to%20discuss%20a%20private%20mandate." class="drawer__btn drawer__btn--whatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          <span>WhatsApp +1 437 249 0909</span>
+        </a>
       </div>
     </div>
   </nav>
 
   <main id="top">
 
-    <!-- ══════════════════════════════════════════════════════
-         §I  ·  HERO  ·  THE MOTTO
-         ══════════════════════════════════════════════════════ -->
-    <section class="hero" id="hero" data-section="hero">
+    <!-- ════════════════════════════════════════════════════════
+         §I  ·  IDENTITY  ·  THE HERO
+         ════════════════════════════════════════════════════════ -->
+    <section class="section section--hero" id="hero" data-section="hero">
+
+      <div class="hero__bg-mark" aria-hidden="true">
+        <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+      </div>
 
       <div class="hero__top">
         <div class="hero__article">
           <span class="art-mark">§I</span>
           <span class="art-rule"></span>
-          <span class="art-name">Premise</span>
+          <span class="art-name">Identity</span>
         </div>
         <div class="hero__stamp">CONFIDENTIAL · PRIVATE CIRCULATION</div>
       </div>
 
       <div class="hero__inner">
+        <div class="hero__mark-wrap" data-anim="hero-mark">
+          <img src="assets/np-mark.svg" alt="Ninth Protocol monogram" class="hero__mark"
+               onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+        </div>
 
-        <p class="hero__overline" data-reveal>The Premise</p>
+        <div class="hero__wordmark" data-anim="hero-wordmark">
+          <span>N</span><span>I</span><span>N</span><span>T</span><span>H</span>
+          <span class="gap"></span>
+          <span>P</span><span>R</span><span>O</span><span>T</span><span>O</span><span>C</span><span>O</span><span>L</span>
+        </div>
 
-        <h1 class="hero__motto">
-          <span class="motto-line" data-reveal-line>
-            <span>Time is</span><em>money.</em>
-          </span>
-          <span class="motto-line motto-line--italic" data-reveal-line>
-            <span>Money cannot</span><em>buy time.</em>
-          </span>
+        <div class="hero__rule" data-anim="hero-rule"></div>
+
+        <h1 class="hero__motto" data-anim="hero-motto">
+          <span class="reveal-line"><span class="reveal-line__inner">For those who</span></span>
+          <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">answer to no one.</span></span>
         </h1>
 
-        <div class="hero__rule" data-reveal-rule></div>
-
-        <p class="hero__statement" data-reveal>
-          We deal in both.
+        <p class="hero__sub" data-anim="hero-sub">
+          A private procurement firm. Conflict-free. Discreet. Accountable to one principal only.
         </p>
 
-        <div class="hero__cta-row" data-reveal>
-          <a href="#inquire" class="btn btn--gold">
-            <span>Initiate a Mandate</span>
+        <div class="hero__cta-row" data-anim="hero-cta">
+          <a href="mailto:JRughooputh@ninthprotocol.eu" class="btn btn--gold">
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2"/></svg>
+            <span class="btn__text">Email</span>
             <span class="btn__arrow">→</span>
+            <span class="btn__hover"></span>
           </a>
-          <a href="#firm" class="btn btn--ghost">
-            <span>Read on</span>
+          <a href="https://wa.me/14372490909?text=Hello%20Ninth%20Protocol%20%E2%80%94%20I%27d%20like%20to%20discuss%20a%20private%20mandate." class="btn btn--gold-fill" target="_blank" rel="noopener">
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <span class="btn__text">WhatsApp</span>
+            <span class="btn__arrow">→</span>
           </a>
         </div>
 
       </div>
 
       <div class="hero__footer">
-        <div class="hero__footer-clock">
-          <span class="clock-label">Current time</span>
-          <span class="clock-time" id="utcClockBig">UTC ——:——:——</span>
-        </div>
-        <div class="hero__footer-note">
-          <span class="dot"></span>
-          <span>New clients by referral or application</span>
+        <span class="hero__footer-note">New clients by referral or application.</span>
+        <div class="hero__scroll" aria-hidden="true">
+          <span>Continue</span>
+          <div class="hero__scroll-line"></div>
         </div>
       </div>
-
     </section>
 
-    <!-- ══════════════════════════════════════════════════════
-         §II  ·  THE FIRM
-         ══════════════════════════════════════════════════════ -->
-    <section class="firm" id="firm" data-section="firm">
+    <!-- ════════════════════════════════════════════════════════
+         §II  ·  THE MODEL
+         ════════════════════════════════════════════════════════ -->
+    <section class="section section--model" id="model" data-section="model">
 
-      <div class="container">
+      <div class="model__article" data-anim>
+        <span class="art-mark">§II</span>
+        <span class="art-rule"></span>
+        <span class="art-name art-name--dark">The Model</span>
+      </div>
 
-        <div class="chapter" data-reveal>
-          <span class="chapter__num">§II</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__name">The Firm</span>
-        </div>
+      <div class="model__inner">
 
-        <div class="firm__grid">
+        <p class="model__overline" data-anim>Why principals choose us</p>
 
-          <div class="firm__intro" data-reveal>
-            <h2 class="display">
-              A firm whose only mandate <em>is yours.</em>
-            </h2>
-            <p class="lede">
-              Ninth Protocol is a private procurement firm registered in Estonia, acting for ultra-high-net-worth individuals and family offices globally. We source what cannot be found, acquire what is not for sale, and protect the only asset that does not renew.
-            </p>
+        <h2 class="model__headline" data-anim>
+          <span class="reveal-line"><span class="reveal-line__inner">A different structure</span></span>
+          <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">entirely.</span></span>
+        </h2>
+
+        <div class="model__grid">
+
+          <div class="model__col model__col--ours" data-anim>
+            <span class="model__col-label">Ninth Protocol</span>
+            <p class="model__col-headline">We work for you. Only.</p>
+            <ul class="model__list">
+              <li><span class="check">✓</span> Fee agreed with the client in advance</li>
+              <li><span class="check">✓</span> No commissions from any third party</li>
+              <li><span class="check">✓</span> No preferred suppliers or partners</li>
+              <li><span class="check">✓</span> One principal at a time</li>
+              <li><span class="check">✓</span> Discretion enforced beyond the mandate</li>
+            </ul>
           </div>
 
-          <ol class="firm__facts" data-reveal-stagger>
+          <div class="model__divider" aria-hidden="true">
+            <div class="model__divider-rule"></div>
+            <span class="model__divider-vs">vs</span>
+            <div class="model__divider-rule"></div>
+          </div>
 
-            <li class="fact">
-              <div class="fact__num">01</div>
-              <div class="fact__body">
-                <h3>Conflict-Free</h3>
-                <p>We earn no commissions, rebates, or referral fees from any third party. The client is our only counterparty.</p>
+          <div class="model__col model__col--theirs" data-anim>
+            <span class="model__col-label model__col-label--muted">Concierge firms</span>
+            <p class="model__col-headline model__col-headline--muted">Compensated by suppliers.</p>
+            <ul class="model__list model__list--muted">
+              <li><span class="cross">—</span> Client fees plus supplier commissions</li>
+              <li><span class="cross">—</span> Preferred-vendor agreements</li>
+              <li><span class="cross">—</span> Incentivised to close every deal</li>
+              <li><span class="cross">—</span> Scaled across many clients at once</li>
+              <li><span class="cross">—</span> Conflict of interest by design</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <p class="model__closing" data-anim>
+          <em>A fiduciary relationship cannot exist alongside a commission structure.</em>
+          We chose the former, entirely.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════
+         §III  ·  CAPABILITIES
+         ════════════════════════════════════════════════════════ -->
+    <section class="section section--capabilities" id="capabilities" data-section="capabilities">
+
+      <div class="cap__article" data-anim>
+        <span class="art-mark art-mark--light">§III</span>
+        <span class="art-rule art-rule--light"></span>
+        <span class="art-name art-name--light">Capabilities</span>
+      </div>
+
+      <div class="cap__inner">
+
+        <p class="cap__overline" data-anim>What we are retained to do</p>
+
+        <h2 class="cap__headline" data-anim>
+          <span class="reveal-line"><span class="reveal-line__inner">Four disciplines.</span></span>
+          <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">One standard.</span></span>
+        </h2>
+
+        <div class="cap__grid">
+
+          <article class="cap-card" data-anim>
+            <header>
+              <span class="cap-card__num">01</span>
+              <div class="cap-card__rule"></div>
+            </header>
+            <h3>Automotive &amp; Aviation</h3>
+            <p>Off-market hypercars, JDM acquisitions, coachbuilt commissions, private aircraft acquisition and discreet charter.</p>
+          </article>
+
+          <article class="cap-card" data-anim>
+            <header>
+              <span class="cap-card__num">02</span>
+              <div class="cap-card__rule"></div>
+            </header>
+            <h3>Rare Horology &amp; Collectibles</h3>
+            <p>Reference-grade Patek, AP, Richard Mille. Art, instruments and rare assets — sourced through relationships, not auctions.</p>
+          </article>
+
+          <article class="cap-card" data-anim>
+            <header>
+              <span class="cap-card__num">03</span>
+              <div class="cap-card__rule"></div>
+            </header>
+            <h3>Experiences &amp; Access</h3>
+            <p>Invitation-only events. Itineraries that cannot be booked. Introductions that cannot be requested.</p>
+          </article>
+
+          <article class="cap-card" data-anim>
+            <header>
+              <span class="cap-card__num">04</span>
+              <div class="cap-card__rule"></div>
+            </header>
+            <h3>Logistics &amp; Project Direction</h3>
+            <p>Bespoke builds, restorations, white-glove transport of high-value assets across borders.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════
+         §IV  ·  CONTACT
+         ════════════════════════════════════════════════════════ -->
+    <section class="section section--contact" id="contact" data-section="contact">
+
+      <div class="contact__bg-mark" aria-hidden="true">
+        <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+      </div>
+
+      <div class="contact__article" data-anim>
+        <span class="art-mark">§IV</span>
+        <span class="art-rule"></span>
+        <span class="art-name">Contact</span>
+      </div>
+
+      <div class="contact__inner">
+
+        <p class="contact__overline" data-anim>Initiate a Mandate</p>
+
+        <h2 class="contact__headline" data-anim>
+          <span class="reveal-line"><span class="reveal-line__inner">If the matter</span></span>
+          <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">is genuine,</span></span>
+          <span class="reveal-line"><span class="reveal-line__inner">we will respond.</span></span>
+        </h2>
+
+        <p class="contact__sub" data-anim>
+          All inquiries reviewed within 24 hours. Reach us directly by email or WhatsApp, or send a brief through the form. What you share is held in confidence.
+        </p>
+
+        <div class="contact__channels" data-anim>
+
+          <a href="mailto:JRughooputh@ninthprotocol.eu" class="channel">
+            <div class="channel__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2"/></svg>
+            </div>
+            <div class="channel__body">
+              <span class="channel__label">Email</span>
+              <span class="channel__value">JRughooputh@ninthprotocol.eu</span>
+            </div>
+            <span class="channel__arrow">→</span>
+          </a>
+
+          <a href="https://wa.me/14372490909?text=Hello%20Ninth%20Protocol%20%E2%80%94%20I%27d%20like%20to%20discuss%20a%20private%20mandate." class="channel" target="_blank" rel="noopener">
+            <div class="channel__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+            <div class="channel__body">
+              <span class="channel__label">WhatsApp</span>
+              <span class="channel__value">+1 437 249 0909</span>
+            </div>
+            <span class="channel__arrow">→</span>
+          </a>
+
+        </div>
+
+        <details class="contact__form-toggle" data-anim>
+          <summary>
+            <span>Or send a brief through the form</span>
+            <span class="contact__form-arrow">↓</span>
+          </summary>
+
+          <form id="inquiry-form" class="form" novalidate>
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="New Inquiry — ninthprotocol.eu" />
+            <input type="hidden" name="from_name" value="Ninth Protocol Website" />
+            <input type="hidden" name="reference" id="formReference" value="" />
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
+
+            <div class="form__meta">
+              <div class="form__meta-item">
+                <span>Reference</span>
+                <strong id="formRefDisplay">NP-——————</strong>
               </div>
-            </li>
-
-            <li class="fact">
-              <div class="fact__num">02</div>
-              <div class="fact__body">
-                <h3>Limited Roster</h3>
-                <p>A deliberately small number of clients. One point of contact with authority to act. No account-manager triage.</p>
+              <div class="form__meta-item">
+                <span>Reviewed within</span>
+                <strong>24 hours</strong>
               </div>
-            </li>
+            </div>
 
-            <li class="fact">
-              <div class="fact__num">03</div>
-              <div class="fact__body">
-                <h3>Held in Confidence</h3>
-                <p>We do not name references, confirm engagements, or discuss our clients. Discretion enforced beyond the mandate.</p>
+            <div class="form__grid">
+              <div class="form__field">
+                <label for="firstName"><span class="form__num">01</span>First Name</label>
+                <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+                <div class="form__rule"></div>
               </div>
-            </li>
-
-          </ol>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         §III  ·  THE DIFFERENCE
-         ══════════════════════════════════════════════════════ -->
-    <section class="difference" id="difference" data-section="difference">
-
-      <div class="container">
-
-        <div class="chapter chapter--light" data-reveal>
-          <span class="chapter__num">§III</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__name">The Difference</span>
-        </div>
-
-        <h2 class="display display--light" data-reveal>
-          The model precedes <em>everything.</em>
-        </h2>
-
-        <p class="display-sub" data-reveal>
-          Most concierge and procurement firms operate on commission. Their advice is not independent — it is incentivised. We chose the other way, entirely.
-        </p>
-
-        <div class="diff-grid">
-
-          <article class="diff" data-reveal>
-            <header>
-              <span class="diff__num">01</span>
-              <h3>The Fiduciary Standard</h3>
-            </header>
-            <p class="diff__body">
-              We act for the principal — not the supplier. Fees are agreed directly with the client before any mandate commences. No undisclosed margins. No third-party kickbacks. No conflict of interest, ever.
-            </p>
-            <footer class="diff__close">
-              <em>A fiduciary relationship cannot exist alongside a commission structure.</em>
-            </footer>
-          </article>
-
-          <article class="diff" data-reveal>
-            <header>
-              <span class="diff__num">02</span>
-              <h3>One Principal at a Time</h3>
-            </header>
-            <p class="diff__body">
-              You are not allocated to a queue or a team. You have a single point of contact with full authority to act — and the discretion to do so without involving anyone who does not need to know.
-            </p>
-            <footer class="diff__close">
-              <em>Complex mandates require full attention. Full attention requires constraint.</em>
-            </footer>
-          </article>
-
-          <article class="diff" data-reveal>
-            <header>
-              <span class="diff__num">03</span>
-              <h3>Counsel, Not Just Execution</h3>
-            </header>
-            <p class="diff__body">
-              We recommend against a purchase when the evidence does not support it. We tell you when a price is wrong, when provenance is uncertain, when a better option exists in a market you do not currently see.
-            </p>
-            <footer class="diff__close">
-              <em>That counsel is what you are retaining. Not execution alone — judgement.</em>
-            </footer>
-          </article>
-
-          <article class="diff" data-reveal>
-            <header>
-              <span class="diff__num">04</span>
-              <h3>Discretion by Structure</h3>
-            </header>
-            <p class="diff__body">
-              Discretion is not a promise made in copy. It is enforced — through limited documentation, controlled access, and a standing non-disclosure that extends beyond the mandate's termination.
-            </p>
-            <footer class="diff__close">
-              <em>We understand what is at stake when the wrong person knows the right detail.</em>
-            </footer>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         §IV  ·  THE MANDATE
-         ══════════════════════════════════════════════════════ -->
-    <section class="mandate" id="mandate" data-section="mandate">
-
-      <div class="container">
-
-        <div class="chapter" data-reveal>
-          <span class="chapter__num">§IV</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__name">The Mandate</span>
-        </div>
-
-        <h2 class="display" data-reveal>
-          What we are retained <em>to do.</em>
-        </h2>
-
-        <p class="display-sub" data-reveal>
-          Four disciplines. One standard. Each mandate is direct, finite, and conflict-free.
-        </p>
-
-        <div class="mandate-list">
-
-          <article class="mandate-item" data-reveal>
-            <div class="mandate-item__left">
-              <span class="mandate-item__num">01</span>
-              <h3>Automotive &amp; Aviation</h3>
+              <div class="form__field">
+                <label for="lastName"><span class="form__num">02</span>Last Name</label>
+                <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+                <div class="form__rule"></div>
+              </div>
             </div>
-            <div class="mandate-item__right">
-              <p>
-                Off-market hypercars. JDM acquisitions. Coachbuilt commissions. Private aircraft acquisition and discreet charter management. We source what is not publicly available — and verify provenance, pricing, and condition before you commit.
-              </p>
-              <ul class="mandate-item__tags">
-                <li>Off-market acquisition</li>
-                <li>Provenance verification</li>
-                <li>Cross-border registration</li>
-                <li>Aircraft charter management</li>
-              </ul>
-            </div>
-          </article>
 
-          <article class="mandate-item" data-reveal>
-            <div class="mandate-item__left">
-              <span class="mandate-item__num">02</span>
-              <h3>Rare Horology &amp; Collectibles</h3>
-            </div>
-            <div class="mandate-item__right">
-              <p>
-                Patek Philippe. Audemars Piguet. Richard Mille. Art, manuscripts, instruments, and other assets where the constraint is not budget but access. We acquire through relationships, not auction sites.
-              </p>
-              <ul class="mandate-item__tags">
-                <li>Reference-grade timepieces</li>
-                <li>Authentication &amp; provenance</li>
-                <li>Private sale negotiation</li>
-                <li>Discreet transfer</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="mandate-item" data-reveal>
-            <div class="mandate-item__left">
-              <span class="mandate-item__num">03</span>
-              <h3>Experiences &amp; Access</h3>
-            </div>
-            <div class="mandate-item__right">
-              <p>
-                Invitation-only events. Itineraries that cannot be booked. Introductions that cannot be requested. We open doors that are not advertised, in capitals where standing is not for sale.
-              </p>
-              <ul class="mandate-item__tags">
-                <li>Closed-door events</li>
-                <li>Private circuits &amp; previews</li>
-                <li>Itinerary design</li>
-                <li>Standing introductions</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="mandate-item" data-reveal>
-            <div class="mandate-item__left">
-              <span class="mandate-item__num">04</span>
-              <h3>Logistics &amp; Project Direction</h3>
-            </div>
-            <div class="mandate-item__right">
-              <p>
-                Bespoke vehicle builds. Frame-off restorations. White-glove transport of high-value assets across borders. Multi-stage projects where the cost of error in time, money, or condition is not acceptable.
-              </p>
-              <ul class="mandate-item__tags">
-                <li>Coachbuilt commissions</li>
-                <li>Restoration direction</li>
-                <li>Asset transport &amp; storage</li>
-                <li>Multi-stage project oversight</li>
-              </ul>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         §V  ·  THE COMPARISON
-         ══════════════════════════════════════════════════════ -->
-    <section class="comparison" id="comparison" data-section="comparison">
-      <div class="container">
-
-        <div class="chapter chapter--light" data-reveal>
-          <span class="chapter__num">§V</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__name">The Comparison</span>
-        </div>
-
-        <h2 class="display display--light" data-reveal>
-          What sets us apart <em>structurally.</em>
-        </h2>
-
-        <p class="display-sub" data-reveal>
-          The difference is not in claims of service quality. It is in the legal and financial structure of the relationship itself.
-        </p>
-
-        <div class="compare" data-reveal>
-          <div class="compare__head">
-            <div class="compare__col compare__col--label"></div>
-            <div class="compare__col compare__col--us">
-              <span class="compare__brand">NINTH PROTOCOL</span>
-              <span class="compare__sub">Fiduciary procurement</span>
-            </div>
-            <div class="compare__col compare__col--them">
-              <span class="compare__brand">CONCIERGE FIRMS</span>
-              <span class="compare__sub">Commission-based</span>
-            </div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Compensation</div>
-            <div class="compare__cell compare__cell--us">Client only. Agreed in advance.</div>
-            <div class="compare__cell compare__cell--them">Client + supplier commissions</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Supplier relationships</div>
-            <div class="compare__cell compare__cell--us">No preferred partners</div>
-            <div class="compare__cell compare__cell--them">Preferred-vendor agreements</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Conflict of interest</div>
-            <div class="compare__cell compare__cell--us">None by structure</div>
-            <div class="compare__cell compare__cell--them">Embedded in revenue model</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Counsel</div>
-            <div class="compare__cell compare__cell--us">May recommend against purchase</div>
-            <div class="compare__cell compare__cell--them">Incentivised to close</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Client load</div>
-            <div class="compare__cell compare__cell--us">Deliberately limited</div>
-            <div class="compare__cell compare__cell--them">Scale-driven</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Point of contact</div>
-            <div class="compare__cell compare__cell--us">One principal, with authority</div>
-            <div class="compare__cell compare__cell--them">Tiered account team</div>
-          </div>
-
-          <div class="compare__row">
-            <div class="compare__label">Disclosure</div>
-            <div class="compare__cell compare__cell--us">Full fee transparency</div>
-            <div class="compare__cell compare__cell--them">Margins typically undisclosed</div>
-          </div>
-        </div>
-
-        <p class="compare__footnote" data-reveal>
-          <em>This is the entire reason Ninth Protocol exists.</em>
-        </p>
-
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         §VI  ·  THE STANDARD
-         ══════════════════════════════════════════════════════ -->
-    <section class="standard" id="standard" data-section="standard">
-
-      <div class="standard__inner">
-
-        <div class="standard__article" data-reveal>
-          <span class="art-mark art-mark--gold">§VI</span>
-        </div>
-
-        <p class="standard__overline" data-reveal>The Standard</p>
-
-        <h2 class="standard__headline" data-reveal>
-          <span>The standard does not vary</span>
-          <em>by mandate size.</em>
-        </h2>
-
-        <p class="standard__sub" data-reveal>
-          Whether the assignment is a single watch or a private aircraft transaction, the protocol is the same.
-        </p>
-
-        <div class="standard__pillars" data-reveal>
-          <span>Conflict-free.</span>
-          <span class="dot"></span>
-          <span>Discreet.</span>
-          <span class="dot"></span>
-          <span>Accountable to one principal only.</span>
-        </div>
-
-        <div class="standard__rule" data-reveal></div>
-
-        <p class="standard__motto" data-reveal>
-          <em>Time is money. Money cannot buy time.</em><br/>
-          <span>We deal in both.</span>
-        </p>
-
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════
-         §VII  ·  INITIATE
-         ══════════════════════════════════════════════════════ -->
-    <section class="inquire" id="inquire" data-section="inquire">
-      <div class="container container--narrow">
-
-        <div class="chapter chapter--light" data-reveal>
-          <span class="chapter__num">§VII</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__name">Initiate</span>
-        </div>
-
-        <h2 class="display display--light" data-reveal>
-          Initiate a mandate.
-        </h2>
-
-        <p class="display-sub" data-reveal>
-          All inquiries are reviewed within 24 hours. If your mandate falls within our scope and we have capacity, you will receive a direct response from a principal — not an intake form. What you share here is held in confidence.
-        </p>
-
-        <form id="inquiry-form" class="form" data-reveal novalidate>
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-          <input type="hidden" name="subject" value="New Inquiry — ninthprotocol.eu" />
-          <input type="hidden" name="from_name" value="Ninth Protocol Website" />
-          <input type="hidden" name="reference" id="formReference" value="" />
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
-
-          <div class="form__meta">
-            <div class="form__meta-item">
-              <span>Reference</span>
-              <strong id="formRefDisplay">NP-——————</strong>
-            </div>
-            <div class="form__meta-item">
-              <span>Status</span>
-              <strong class="pulse">Awaiting</strong>
-            </div>
-            <div class="form__meta-item">
-              <span>Reviewed within</span>
-              <strong>24 hours</strong>
-            </div>
-          </div>
-
-          <div class="form__grid">
             <div class="form__field">
-              <label for="firstName"><span class="form__num">01</span>First Name</label>
-              <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+              <label for="email"><span class="form__num">03</span>Email Address</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
               <div class="form__rule"></div>
             </div>
+
             <div class="form__field">
-              <label for="lastName"><span class="form__num">02</span>Last Name</label>
-              <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+              <label for="nature"><span class="form__num">04</span>Nature of Inquiry</label>
+              <select id="nature" name="nature" required>
+                <option value="" disabled selected>— Select a category —</option>
+                <option value="Automotive">Automotive</option>
+                <option value="Aviation">Aviation</option>
+                <option value="Horology">Horology</option>
+                <option value="Experiences">Experiences</option>
+                <option value="Logistics">Logistics</option>
+                <option value="Other">Other</option>
+              </select>
               <div class="form__rule"></div>
             </div>
-          </div>
 
-          <div class="form__field">
-            <label for="email"><span class="form__num">03</span>Email Address</label>
-            <input type="email" id="email" name="email" required autocomplete="email" />
-            <div class="form__rule"></div>
-          </div>
+            <div class="form__field">
+              <label for="context"><span class="form__num">05</span>Brief Context</label>
+              <textarea id="context" name="context" rows="4" required placeholder="Scope, timing, and any relevant constraints."></textarea>
+              <div class="form__rule"></div>
+            </div>
 
-          <div class="form__field">
-            <label for="phone"><span class="form__num">04</span>Phone <span class="optional">— optional</span></label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel" />
-            <div class="form__rule"></div>
-          </div>
-
-          <div class="form__field">
-            <label for="nature"><span class="form__num">05</span>Nature of Inquiry</label>
-            <select id="nature" name="nature" required>
-              <option value="" disabled selected>— Select a category —</option>
-              <option value="Automotive">Automotive</option>
-              <option value="Aviation">Aviation</option>
-              <option value="Horology">Horology</option>
-              <option value="Experiences">Experiences</option>
-              <option value="Logistics">Logistics</option>
-              <option value="Other">Other</option>
-            </select>
-            <div class="form__rule"></div>
-          </div>
-
-          <div class="form__field">
-            <label for="context"><span class="form__num">06</span>Brief Context</label>
-            <textarea id="context" name="context" rows="5" required placeholder="Scope, timing, and any relevant constraints. A sentence or two is sufficient."></textarea>
-            <div class="form__rule"></div>
-          </div>
-
-          <div class="form__footer">
-            <button type="submit" class="btn btn--gold btn--lg" id="submitBtn">
-              <span>Initiate Protocol</span>
+            <button type="submit" class="btn btn--gold-fill btn--lg" id="submitBtn">
+              <span class="btn__text">Send Inquiry</span>
               <span class="btn__arrow">→</span>
             </button>
-            <p class="form__assurance">
-              <span class="lock-icon" aria-hidden="true">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <rect x="3" y="7" width="10" height="7" rx="1"/>
-                  <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
-                </svg>
-              </span>
-              Held in confidence. No third-party disclosure.
-            </p>
-          </div>
 
-          <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
-        </form>
+            <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </details>
 
       </div>
+
+      <p class="contact__caption" data-anim>Introductions by appointment.</p>
     </section>
 
   </main>
 
   <!-- ══════════  FOOTER  ══════════ -->
   <footer class="footer">
-
-    <div class="footer__top">
-      <div class="container">
-        <div class="footer__top-inner">
-          <p class="footer__motto">
-            <em>Time is money.</em>
-            <span>Money cannot buy time.</span>
-            <strong>We deal in both.</strong>
-          </p>
+    <div class="footer__bar"></div>
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__mark">
+          <img src="assets/np-mark.svg" alt="" onerror="this.onerror=null;this.src='assets/np-mark.png'" />
+        </span>
+        <div class="footer__brand-text">
+          <p class="footer__name">NINTH PROTOCOL</p>
+          <p class="footer__tag">Private Procurement</p>
         </div>
       </div>
-    </div>
 
-    <div class="footer__main">
-      <div class="container">
-        <div class="footer__cols">
-
-          <div class="footer__col footer__col--brand">
-            <span class="footer__mark"><img src="assets/np-mark.png" alt="" /></span>
-            <p class="footer__name">NINTH PROTOCOL</p>
-            <p class="footer__tag">Private Procurement</p>
-          </div>
-
-          <div class="footer__col">
-            <p class="footer__overline">Contact</p>
-            <p class="footer__line">Introductions by appointment.</p>
-            <a href="mailto:JRughooputh@ninthprotocol.eu" class="footer__email">
-              JRughooputh@ninthprotocol.eu
-            </a>
-          </div>
-
-          <div class="footer__col">
-            <p class="footer__overline">Articles</p>
-            <ul>
-              <li><a href="#firm">§II — The Firm</a></li>
-              <li><a href="#difference">§III — The Difference</a></li>
-              <li><a href="#mandate">§IV — The Mandate</a></li>
-              <li><a href="#comparison">§V — The Comparison</a></li>
-              <li><a href="#inquire">§VII — Initiate</a></li>
-            </ul>
-          </div>
-
-          <div class="footer__col">
-            <p class="footer__overline">Registration</p>
-            <p>Ninth Protocol OÜ</p>
-            <p>Estonia · International Holding</p>
-            <p class="footer__small">© <span id="year"></span> · All rights reserved</p>
-          </div>
-
-        </div>
+      <div class="footer__meta">
+        <p>Ninth Protocol OÜ · Estonia</p>
+        <p class="footer__small">© <span id="year"></span> · Classification: Private</p>
       </div>
     </div>
-
-    <div class="footer__sub">
-      <div class="container">
-        <div class="footer__sub-inner">
-          <span>Session</span>
-          <span id="footerRef" class="mono">NP-——————</span>
-          <span class="dot"></span>
-          <span id="footerClock" class="mono">UTC ——:——:——</span>
-          <span class="dot"></span>
-          <span>Classification: PRIVATE</span>
-        </div>
-      </div>
-    </div>
-
   </footer>
 
   <script src="script.js"></script>

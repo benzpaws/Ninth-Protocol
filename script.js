@@ -1,17 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════════
    NINTH PROTOCOL  ·  Interaction Engine
-   Information-led · Type-driven · Adaptive responsive
+   Bidirectional reveal animations · Parallax · Form handler
    ═══════════════════════════════════════════════════════════════════════ */
 
 (function() {
   'use strict';
 
-  // ─────────────────────────────────────────────────────────────────────
-  // Logo is rendered as a real PNG image directly in HTML — no injection needed
-  // ─────────────────────────────────────────────────────────────────────
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ─────────────────────────────────────────────────────────────────────
-  // Session reference  ·  NP-9XXXXX  ·  the leading 9 is the brand motif
+  // Session reference  ·  NP-9XXXXX
   // ─────────────────────────────────────────────────────────────────────
   function generateReference() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -21,46 +19,21 @@
   }
 
   const sessionRef = generateReference();
-  ['sessionRef', 'drawerRef', 'footerRef', 'preloader-ref', 'formRefDisplay']
-    .forEach(id => { const el = document.getElementById(id); if (el) el.textContent = sessionRef; });
-
+  ['formRefDisplay'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = sessionRef;
+  });
   const formRefInput = document.getElementById('formReference');
   if (formRefInput) formRefInput.value = sessionRef;
 
   // ─────────────────────────────────────────────────────────────────────
-  // Live UTC clock  ·  central to the "Time is money" motto
-  // ─────────────────────────────────────────────────────────────────────
-  function tickClock() {
-    const now = new Date();
-    const hh = String(now.getUTCHours()).padStart(2, '0');
-    const mm = String(now.getUTCMinutes()).padStart(2, '0');
-    const ss = String(now.getUTCSeconds()).padStart(2, '0');
-    const time = `${hh}:${mm}:${ss}`;
-    const timeBig = `UTC ${time}`;
-
-    const top = document.getElementById('utcClock');
-    if (top) top.textContent = time;
-
-    const big = document.getElementById('utcClockBig');
-    if (big) big.textContent = timeBig;
-
-    const drawer = document.getElementById('drawerClock');
-    if (drawer) drawer.textContent = time;
-
-    const footer = document.getElementById('footerClock');
-    if (footer) footer.textContent = timeBig;
-  }
-  tickClock();
-  setInterval(tickClock, 1000);
-
-  // ─────────────────────────────────────────────────────────────────────
-  // Current year in footer
+  // Year in footer
   // ─────────────────────────────────────────────────────────────────────
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // ─────────────────────────────────────────────────────────────────────
-  // Preloader  ·  show ~1.6s, dismiss cleanly
+  // Preloader
   // ─────────────────────────────────────────────────────────────────────
   function dismissPreloader() {
     const preloader = document.getElementById('preloader');
@@ -69,47 +42,40 @@
     document.body.classList.add('is-loaded');
   }
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   if (reducedMotion) {
     dismissPreloader();
   } else if (document.readyState === 'complete') {
-    setTimeout(dismissPreloader, 1600);
+    setTimeout(dismissPreloader, 1900);
   } else {
-    window.addEventListener('load', () => setTimeout(dismissPreloader, 1600));
+    window.addEventListener('load', () => setTimeout(dismissPreloader, 1900));
   }
-
-  // Defensive: ensure preloader never lingers
-  setTimeout(dismissPreloader, 4000);
+  setTimeout(dismissPreloader, 4000);  // defensive
 
   // ─────────────────────────────────────────────────────────────────────
   // Smooth anchor scroll
   // ─────────────────────────────────────────────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id === '#') return;
 
-      // Close drawer if open
       const drawer = document.getElementById('drawer');
       if (drawer && drawer.classList.contains('is-open')) {
         drawer.classList.remove('is-open');
-        const toggle = document.getElementById('menuToggle');
-        if (toggle) toggle.classList.remove('is-open');
+        document.getElementById('menuToggle').classList.remove('is-open');
         document.body.classList.remove('menu-open');
       }
 
-      if (targetId === '#top') {
+      if (id === '#top') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
-      const target = document.querySelector(targetId);
+      const target = document.querySelector(id);
       if (target) {
         e.preventDefault();
-        const offset = 70;
-        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 70;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     });
@@ -134,29 +100,16 @@
   // ─────────────────────────────────────────────────────────────────────
   const scrollProgress = document.getElementById('scrollProgress');
   let scrollTicking = false;
-  function updateProgress() {
-    if (scrollProgress) {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY / Math.max(docHeight, 1);
-      scrollProgress.style.transform = `scaleX(${scrolled})`;
-    }
-    scrollTicking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(updateProgress);
-      scrollTicking = true;
-    }
-  }, { passive: true });
 
-  // ─────────────────────────────────────────────────────────────────────
-  // Auto-hide top bar on scroll down, show on scroll up
-  // ─────────────────────────────────────────────────────────────────────
-  const topbar = document.getElementById('topbar');
-  let lastY = window.scrollY;
-  let topbarTicking = false;
-  function handleTopbar() {
+  function updateScroll() {
     const y = window.scrollY;
+
+    if (scrollProgress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.transform = `scaleX(${y / Math.max(max, 1)})`;
+    }
+
+    // Topbar hide/show
     if (topbar) {
       if (y > 200 && y > lastY + 8) {
         topbar.classList.add('is-hidden');
@@ -164,38 +117,88 @@
         topbar.classList.remove('is-hidden');
       }
     }
+
+    // Parallax for background marks
+    parallaxEls.forEach(({ el, factor, baseTop }) => {
+      const rect = el.parentElement.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const offset = (center - window.innerHeight / 2) * factor * -1;
+      el.style.setProperty('--parallax-y', offset.toFixed(1));
+    });
+
     lastY = y;
-    topbarTicking = false;
+    scrollTicking = false;
   }
+
+  let lastY = window.scrollY;
+  const topbar = document.getElementById('topbar');
+  const parallaxEls = [
+    ...document.querySelectorAll('.hero__bg-mark, .contact__bg-mark')
+  ].map(el => ({ el, factor: 0.15, baseTop: 0 }));
+
   window.addEventListener('scroll', () => {
-    if (!topbarTicking) {
-      requestAnimationFrame(handleTopbar);
-      topbarTicking = true;
+    if (!scrollTicking) {
+      requestAnimationFrame(updateScroll);
+      scrollTicking = true;
     }
   }, { passive: true });
 
   // ─────────────────────────────────────────────────────────────────────
-  // Reveal on scroll  ·  slow, deliberate
+  // BIDIRECTIONAL REVEAL ENGINE
   // ─────────────────────────────────────────────────────────────────────
-  if ('IntersectionObserver' in window) {
+  // Each [data-anim] element gets one of three states based on its
+  // position relative to the viewport:
+  //   .is-in        — element is currently visible
+  //   .is-out-down  — element is below the viewport (waiting to enter)
+  //   .is-out-up    — element has been scrolled past going up
+  //
+  // The transitions look right both when scrolling DOWN AND scrolling UP.
+  // ─────────────────────────────────────────────────────────────────────
+
+  const animEls = Array.from(document.querySelectorAll('[data-anim]'));
+
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+
+    // Initial state — everything not in view is "out-down"
+    animEls.forEach(el => el.classList.add('is-out-down'));
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const el = entry.target;
+        const rect = entry.boundingClientRect;
+
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          // Element is in view — mark in
+          el.classList.remove('is-out-up', 'is-out-down');
+          el.classList.add('is-in');
+        } else {
+          // Element has left the viewport — figure out which way
+          el.classList.remove('is-in');
+          if (rect.top < 0) {
+            // exited above
+            el.classList.add('is-out-up');
+            el.classList.remove('is-out-down');
+          } else {
+            // exited below
+            el.classList.add('is-out-down');
+            el.classList.remove('is-out-up');
+          }
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+    }, {
+      threshold: [0, 0.05, 0.1],
+      rootMargin: '-5% 0px -5% 0px'
+    });
 
-    document.querySelectorAll('[data-reveal], [data-reveal-stagger], [data-reveal-line], [data-reveal-rule], .standard__rule')
-      .forEach(el => observer.observe(el));
+    animEls.forEach(el => observer.observe(el));
+
   } else {
-    document.querySelectorAll('[data-reveal], [data-reveal-stagger], [data-reveal-line], [data-reveal-rule], .standard__rule')
-      .forEach(el => el.classList.add('is-visible'));
+    // Reduced motion or no IO support — show everything immediately
+    animEls.forEach(el => el.classList.add('is-in'));
   }
 
   // ─────────────────────────────────────────────────────────────────────
-  // Form handler  ·  Web3Forms + mailto fallback
+  // FORM HANDLER  ·  Web3Forms + mailto fallback
   // ─────────────────────────────────────────────────────────────────────
   const form = document.getElementById('inquiry-form');
   const status = document.getElementById('form-status');
@@ -212,23 +215,22 @@
       }
 
       const submitBtn = document.getElementById('submitBtn');
-      const submitText = submitBtn.querySelector('span:first-child');
+      const submitText = submitBtn.querySelector('.btn__text');
       const originalText = submitText.textContent;
 
       submitBtn.disabled = true;
-      submitText.textContent = 'Transmitting';
+      submitText.textContent = 'Sending';
       status.textContent = '';
       status.className = 'form__status';
 
       const data = new FormData(form);
       const firstName = data.get('firstName') || '';
-      const lastName  = data.get('lastName') || '';
-      const fullName  = `${firstName} ${lastName}`.trim();
-      const email     = data.get('email') || '';
-      const phone     = data.get('phone') || '(not provided)';
-      const nature    = data.get('nature') || '';
-      const context   = data.get('context') || '';
-      const ref       = data.get('reference') || sessionRef;
+      const lastName = data.get('lastName') || '';
+      const fullName = `${firstName} ${lastName}`.trim();
+      const email = data.get('email') || '';
+      const nature = data.get('nature') || '';
+      const context = data.get('context') || '';
+      const ref = data.get('reference') || sessionRef;
 
       const message =
         `NEW INQUIRY  ·  ${ref}\n` +
@@ -236,7 +238,6 @@
         `─────────────────────────────────────────\n` +
         `Name:      ${fullName}\n` +
         `Email:     ${email}\n` +
-        `Phone:     ${phone}\n` +
         `Category:  ${nature}\n` +
         `Reference: ${ref}\n` +
         `─────────────────────────────────────────\n\n` +
@@ -250,12 +251,10 @@
 
       const accessKey = data.get('access_key');
 
-      // mailto fallback
       if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
         const subject = encodeURIComponent(`New Inquiry — ${nature} — ${fullName} — ${ref}`);
         const body = encodeURIComponent(message);
         window.location.href = `mailto:JRughooputh@ninthprotocol.eu?subject=${subject}&body=${body}`;
-
         status.textContent = `Opening your email client. Reference: ${ref}`;
         status.className = 'form__status success';
         submitBtn.disabled = false;
@@ -263,7 +262,6 @@
         return;
       }
 
-      // Web3Forms
       try {
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',

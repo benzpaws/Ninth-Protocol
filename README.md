@@ -1,50 +1,34 @@
-# NINTH PROTOCOL  ·  Microsite v3
+# NINTH PROTOCOL  ·  Microsite v5
 
-**Time is money. Money cannot buy time. We deal in both.**
+*"For those who answer to no one."*
 
-A type-driven, information-led microsite designed at private-bank scale. Adaptive responsive — auto-detects device, no toggle needed.
-
----
-
-## The concept
-
-This site treats the brand's motto as its conceptual spine. Every design decision flows from it:
-
-- The live UTC clock is not decoration — it is the **subject** of the site
-- Each section is numbered (§I through §VII) like a legal document
-- Each visitor receives a unique session reference (`NP-9XXXXX`) — the leading `9` is the brand motif
-- The motto opens and closes the site — once in the hero, once in the standard, once in the footer
-- The §V Comparison Table is the credibility moment: a structural, factual comparison versus commission-based concierges
-
-This is closer to a private-bank report than a marketing page. No imagery. No video. Just typography, structure, and information.
+A focused, four-section microsite designed for QR-code distribution from business cards. Adaptive responsive — auto-detects device.
 
 ---
 
-## Structure
+## Sections
 
-| § | Section | Purpose |
-|---|---------|---------|
-| I | Hero | The motto, massive |
-| II | The Firm | One paragraph + three numbered facts |
-| III | The Difference | Four numbered differentiators |
-| IV | The Mandate | The four disciplines, with detailed scope |
-| V | The Comparison | Side-by-side table: Ninth Protocol vs commission concierges |
-| VI | The Standard | Closing statement that loops back to the motto |
-| VII | Initiate | The inquiry form |
+| § | Title | Job |
+|---|-------|-----|
+| I | Identity | Logo, motto, immediate Email + WhatsApp CTAs |
+| II | The Model | Side-by-side comparison: Ninth Protocol vs commission concierges |
+| III | Capabilities | The four disciplines |
+| IV | Contact | Email + WhatsApp channels, optional form behind a toggle |
+
+Each section is full-viewport. Designed to be scanned in 30 seconds or read in 3 minutes.
 
 ---
 
-## What changed in v3
+## What changed in v5
 
-| Issue | Fixed by |
-|-------|----------|
-| Cursor misalignment | Custom cursor removed entirely — system cursor restored |
-| Logo background mismatch | New inline SVG monogram with transparent background. No more PNG colour-edge issue. |
-| Too dense / too fast | Animation durations doubled. Type scale increased 40%. Whitespace doubled. |
-| No real "difference" content | New §V Comparison section — direct structural comparison with commission concierges |
-| Motto buried | Motto is now the hero, the closing line, and the footer signature |
-| Mobile toggle requested | Removed in favour of adaptive responsive (best practice) |
-| Jekyll processing issue | Added `.nojekyll` file to prevent GitHub from running Jekyll on the HTML |
+- **New motto:** *"For those who answer to no one."* — replaces the "Time is money" motto
+- **Cut from 7 sections → 4** — focused on credibility + contact, the QR-card use case
+- **Contact buttons in the hero** — Email + WhatsApp visible without scrolling
+- **Larger body type** — 17 → 19px serif, easier to read on desktop
+- **Bidirectional scroll animations** — elements animate in when scrolled into view AND animate out when scrolled past in either direction
+- **Real logo** — transparent SVG monogram (with PNG fallback) throughout
+- **No UTC clock** — removed
+- **Background NP watermarks** — subtle, monumental, with subtle parallax on scroll
 
 ---
 
@@ -53,44 +37,42 @@ This is closer to a private-bank report than a marketing page. No imagery. No vi
 ```
 ninth-protocol-site/
 ├── .nojekyll              ← Tells GitHub Pages to serve files as-is
-├── index.html             ← Full page markup
-├── styles.css             ← Design system
-├── script.js              ← Animations, clock, form, references
-├── README.md              ← This file
+├── index.html
+├── styles.css
+├── script.js
+├── README.md
 └── assets/
-    ├── np-mark.svg            ← NEW: transparent SVG monogram (use this)
-    ├── np-monogram.png        ← Original PNG (still used for favicon fallback)
-    ├── np-lockup-square.png   ← Social sharing image
-    ├── np-lockup-wide.png     ← Banner version
-    └── np-black.png           ← Logo on black
+    ├── np-mark.svg         ← Real logo vectorized (1KB, scales infinitely)
+    ├── np-mark.png         ← Transparent PNG fallback
+    ├── np-monogram.png     ← Original with indigo background
+    ├── np-lockup-square.png
+    ├── np-lockup-wide.png
+    └── np-black.png
 ```
 
 ---
 
-## Brand colours (verified)
+## Brand colours
 
-- **Deep Indigo:** `#2A2354` — primary
-- **Indigo Deep:** `#1B1638` — section backgrounds
-- **Indigo Night:** `#0E0B22` — hero, closing
-- **Indigo Ink:** `#07051A` — footer
-- **Muted Gold:** `#C0A11E` — accents, rules, type
-- **Gold Soft:** `#D4B84A` — italic emphasis, pull quotes
-- **Paper:** `#F8F5EF` — light section backgrounds
-- **Off-white:** `#F5F2EC` — body text on dark backgrounds
+- **Deep Indigo:** `#2A2354`
+- **Indigo Night:** `#0E0B22`
+- **Muted Gold:** `#C0A11E`
+- **Paper:** `#F8F5EF`
+- **Off-white:** `#F5F2EC`
 
 ## Typography
 
-- **Cormorant Garamond** — All display, headlines, body, quotes
+- **Cormorant Garamond** — Headlines, body, motto
 - **Inter** — UI labels, buttons, navigation
-- **JetBrains Mono** — Metadata, reference numbers, timestamps
+- **JetBrains Mono** — Metadata, reference numbers
 
 ---
 
 ## Deployment
 
-### Step 1 — Upload to GitHub Pages
+### Upload to GitHub Pages
 
-Critical: when uploading, drag the **contents** of the `ninth-protocol-site/` folder into the repo root — not the folder itself. Your repo should look like:
+Critical: drag the **contents** of the `ninth-protocol-site/` folder into the repo root, NOT the folder itself. Repo should look like:
 
 ```
 Ninth-Protocol/             ← repo root
@@ -102,25 +84,22 @@ Ninth-Protocol/             ← repo root
 └── assets/
 ```
 
-If you see `Ninth-Protocol/ninth-protocol-site/index.html`, that's wrong — move the files up one level.
+### Enable Pages
 
-### Step 2 — Enable GitHub Pages
+Settings → Pages → Source: `main` branch, `/ (root)` → Save.
 
-Settings → Pages → Source: `main` branch, `/ (root)` folder → Save.
-Wait 1–2 minutes. Live at `https://<username>.github.io/Ninth-Protocol/`
+### Custom subdomain (optional)
 
-### Step 3 — Connect a subdomain (optional)
+Add a CNAME record on `qr.ninthprotocol.eu` pointing to `<username>.github.io`. Then in Settings → Pages set the custom domain and enforce HTTPS.
 
-Add a CNAME record on `qr.ninthprotocol.eu` pointing to `<username>.github.io`. Then in Settings → Pages, enter the custom domain and enforce HTTPS.
-
-### Step 4 — Make the form send emails
+### Make the form send emails automatically
 
 1. Go to [web3forms.com](https://web3forms.com)
-2. Enter `JRughooputh@ninthprotocol.eu` to get your access key
+2. Enter `JRughooputh@ninthprotocol.eu` to get an access key
 3. Open `index.html`, find `YOUR_WEB3FORMS_ACCESS_KEY`, replace with your key
-4. Commit. Done.
+4. Commit
 
-Until you do this, the form falls back to a `mailto:` link that opens the user's email client pre-filled.
+Until then, the form falls back to `mailto:` — opens the user's email client pre-filled.
 
 ---
 
@@ -130,35 +109,13 @@ Once live, generate a QR with:
 
 - **Foreground:** `#2A2354` (Deep Indigo)
 - **Background:** white or `#F8F5EF` (Paper)
-- **Centre logo:** `assets/np-mark.svg` (or `np-monogram.png`)
+- **Centre logo:** `assets/np-mark.svg`
 
 Recommended generator: [qrcode-monkey.com](https://www.qrcode-monkey.com/)
-
----
-
-## Adaptive responsive behaviour
-
-One codebase, three behaviours:
-
-- **Desktop (>1024px):** Full Pagani-scale typography, side-by-side grids, comparison table in columns
-- **Tablet (720–1024px):** Single column layouts, smaller scale, still rich
-- **Mobile (<720px):** Stacked everything, comparison table becomes labelled cards, drawer menu, larger touch targets
-
-No device detection in JavaScript. Pure CSS media queries. Loads instantly on every device.
-
----
-
-## Browser support
-
-- Safari 15+ (iOS, macOS)
-- Chrome 100+
-- Firefox 100+
-- Edge 100+
-
-Reduced-motion: respected — preloader and animations skipped for users who prefer no motion.
 
 ---
 
 **Ninth Protocol OÜ**
 Estonia · International Holding Entity
 JRughooputh@ninthprotocol.eu
+WhatsApp: +1 437 249 0909
