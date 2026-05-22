@@ -94,7 +94,7 @@ em { font-style: italic; }
 }
 
 .preloader__mark {
-  width: 56px; height: 56px;
+  width: 72px; height: 72px;
   margin: 0 auto 32px;
   color: var(--gold);
   opacity: 0;
@@ -175,7 +175,7 @@ em { font-style: italic; }
 }
 
 .topbar__mark {
-  width: 26px; height: 26px;
+  width: 38px; height: 38px;
   color: var(--gold);
   display: inline-flex;
 }
@@ -183,8 +183,8 @@ em { font-style: italic; }
 
 .topbar__name {
   font-family: var(--serif);
-  font-size: 13px;
-  letter-spacing: 0.3em;
+  font-size: 14px;
+  letter-spacing: 0.32em;
   color: var(--gold);
   font-weight: 400;
 }
@@ -1391,7 +1391,7 @@ em { font-style: italic; }
 .footer__col p:last-child { margin-bottom: 0; }
 
 .footer__col--brand .footer__mark {
-  width: 44px; height: 44px;
+  width: 60px; height: 60px;
   margin-bottom: 18px;
   color: var(--gold);
   display: inline-flex;
