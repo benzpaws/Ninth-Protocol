@@ -813,21 +813,68 @@ em { font-style: italic; }
   margin-bottom: 8px;
 }
 
-/* ═══════════ FEE CALLOUT (TWO TIERS) ═══════════ */
+/* ═══════════ TRANSPARENCY INTRO ═══════════ */
+.model__transparency {
+  max-width: 720px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.model__transparency-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 400;
+  padding-left: 0.5em;
+}
+
+.model__transparency-rule {
+  width: 48px; height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+  margin: 0 auto 24px;
+}
+
+.model__transparency-statement {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.3vw, 26px);
+  line-height: 1.5;
+  color: var(--indigo);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.model__transparency-statement em {
+  color: var(--gold-deep);
+  font-style: italic;
+  display: block;
+  margin-top: 8px;
+}
+
+/* ═══════════ FEE CALLOUT (TWO TIERS — PRESENTATION) ═══════════ */
 .model__fee {
   position: relative;
-  max-width: 780px;
-  margin: 0 auto 64px;
-  padding: 56px 56px 44px;
-  background: rgba(192, 161, 30, 0.04);
+  max-width: 920px;
+  margin: 0 auto 72px;
+  padding: 72px 64px 56px;
+  background:
+    linear-gradient(180deg,
+      rgba(192, 161, 30, 0.06) 0%,
+      rgba(192, 161, 30, 0.03) 100%
+    );
   border: 1px solid var(--gold-line);
   text-align: center;
 }
 
 .model__fee-corner {
   position: absolute;
-  width: 18px; height: 18px;
-  border: 1px solid var(--gold);
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--gold);
 }
 .model__fee-corner--tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
 .model__fee-corner--tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
@@ -836,188 +883,213 @@ em { font-style: italic; }
 
 .model__fee-label {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.4em;
+  font-size: 13px;
+  letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 36px;
+  margin-bottom: 18px;
+  font-weight: 400;
+}
+
+.model__fee-title-rule {
+  width: 56px; height: 1px;
+  background: var(--gold);
+  margin: 0 auto 56px;
+  opacity: 0.6;
 }
 
 .model__fee-tiers {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 28px;
-  align-items: center;
-  margin-bottom: 36px;
+  gap: 36px;
+  align-items: stretch;
+  margin-bottom: 48px;
 }
 
 .tier {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0;
+  padding: 0 12px;
+}
+
+.tier__roman {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+  font-weight: 400;
 }
 
 .tier__range {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 12px;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--ink-soft);
   font-weight: 400;
-  padding-bottom: 6px;
+  margin-bottom: 32px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--gold-line);
   display: inline-block;
-}
-
-.tier__rule {
-  display: none;
 }
 
 .tier__amount {
   font-family: var(--serif);
   font-weight: 300;
-  color: var(--indigo);
   display: inline-flex;
   align-items: baseline;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   line-height: 1;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--gold);
 }
 
 .tier__currency {
   font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.2em;
+  font-size: 16px;
+  letter-spacing: 0.22em;
   color: var(--gold);
+  opacity: 0.85;
   align-self: flex-start;
-  padding-top: 12px;
+  padding-top: 16px;
+  font-weight: 400;
 }
 
 .tier__number {
-  font-size: clamp(60px, 9vw, 96px);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  color: var(--indigo);
+  font-size: clamp(80px, 12vw, 134px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--gold);
+  line-height: 0.95;
+  text-shadow: 0 1px 0 rgba(192, 161, 30, 0.1);
 }
 
-.tier__amount--pct {
-  gap: 14px;
-}
+.tier__amount--pct { gap: 16px; }
 
 .tier__pct {
   font-family: var(--serif);
-  font-size: clamp(60px, 9vw, 96px);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  color: var(--indigo);
+  font-size: clamp(80px, 12vw, 134px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--gold);
   position: relative;
   display: inline-flex;
   align-items: baseline;
+  line-height: 0.95;
 }
 
 .tier__pct-symbol {
-  font-size: 0.45em;
-  margin-left: 0.05em;
+  font-size: 0.42em;
+  margin-left: 0.04em;
   letter-spacing: 0;
   color: var(--gold);
+  opacity: 0.78;
+  font-weight: 300;
 }
 
 .tier__pct-divider {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(28px, 3.5vw, 42px);
+  font-size: clamp(32px, 4vw, 48px);
   color: var(--gold);
   align-self: center;
   font-weight: 300;
-  opacity: 0.7;
+  opacity: 0.55;
 }
 
 .tier__qualifier {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 15px;
-  color: var(--ink-faint);
-  line-height: 1.4;
-  margin-top: 6px;
-  max-width: 220px;
+  font-size: 18px;
+  color: var(--indigo);
+  opacity: 0.78;
+  line-height: 1.45;
+  max-width: 240px;
+  margin-top: 4px;
 }
 
 .model__fee-divider {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  height: 100%;
+  gap: 12px;
+  height: auto;
   justify-content: center;
-  padding: 0 8px;
+  padding: 80px 0 0;
 }
 
 .model__fee-divider-line {
   width: 1px;
   flex: 1;
   background: var(--gold-line);
-  min-height: 30px;
+  min-height: 40px;
 }
 
 .model__fee-divider-mark {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 24px;
+  font-size: 28px;
   color: var(--gold);
-  opacity: 0.6;
+  opacity: 0.5;
   line-height: 1;
 }
 
 .model__fee-rule {
-  width: 60px; height: 1px;
+  width: 80px; height: 1px;
   background: var(--gold);
   opacity: 0.5;
-  margin: 0 auto 28px;
+  margin: 0 auto 32px;
 }
 
 .model__fee-list {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 17px;
+  font-size: 19px;
   color: var(--indigo);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   list-style: none;
+  letter-spacing: 0.005em;
 }
 
 .model__fee-list .dot {
-  width: 4px; height: 4px;
+  width: 5px; height: 5px;
   background: var(--gold);
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .model__fee-min {
-  padding-top: 24px;
+  padding-top: 28px;
   border-top: 1px solid var(--gold-line);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .model__fee-min span {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 11px;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
+  opacity: 0.75;
+  font-weight: 400;
 }
 
 .model__fee-min strong {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--indigo);
   letter-spacing: 0.005em;
 }
@@ -1646,7 +1718,14 @@ em { font-style: italic; }
   .model__divider { padding: 12px 0; }
   .model__closing { font-size: 18px; line-height: 1.5; }
 
-  .model__fee { padding: 36px 24px 32px; margin-bottom: 48px; max-width: 100%; }
+  .model__transparency { margin-bottom: 28px; max-width: 100%; }
+  .model__transparency-label { font-size: 11px; letter-spacing: 0.4em; }
+  .model__transparency-rule { margin-bottom: 20px; }
+  .model__transparency-statement { font-size: 18px; line-height: 1.5; }
+
+  .model__fee { padding: 48px 24px 36px; margin-bottom: 56px; max-width: 100%; }
+  .model__fee-label { font-size: 11px; letter-spacing: 0.4em; }
+  .model__fee-title-rule { margin-bottom: 40px; }
   .model__fee-tiers {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -1654,8 +1733,9 @@ em { font-style: italic; }
   .model__fee-divider {
     flex-direction: row;
     width: 100%;
-    padding: 4px 0;
+    padding: 8px 0;
     height: auto;
+    gap: 14px;
   }
   .model__fee-divider-line {
     height: 1px;
@@ -1663,16 +1743,18 @@ em { font-style: italic; }
     flex: 1;
     min-height: 0;
   }
-  .model__fee-divider-mark { font-size: 18px; }
-  .tier__number { font-size: clamp(54px, 16vw, 78px); }
-  .tier__pct { font-size: clamp(54px, 16vw, 78px); }
-  .tier__pct-divider { font-size: clamp(24px, 6vw, 32px); }
-  .tier__currency { font-size: 12px; padding-top: 8px; }
-  .tier__qualifier { font-size: 14px; max-width: 280px; }
-  .model__fee-list { gap: 10px; font-size: 15px; flex-direction: row; }
+  .model__fee-divider-mark { font-size: 20px; }
+  .tier__roman { font-size: 18px; margin-bottom: 8px; }
+  .tier__range { font-size: 11px; letter-spacing: 0.28em; margin-bottom: 24px; padding-bottom: 12px; }
+  .tier__number { font-size: clamp(64px, 18vw, 92px); }
+  .tier__pct { font-size: clamp(64px, 18vw, 92px); }
+  .tier__pct-divider { font-size: clamp(26px, 7vw, 36px); }
+  .tier__currency { font-size: 14px; padding-top: 10px; }
+  .tier__qualifier { font-size: 16px; max-width: 300px; }
+  .model__fee-list { gap: 8px; font-size: 16px; flex-direction: row; }
   .model__fee-list .dot { display: none; }
   .model__fee-list li { width: 100%; text-align: center; }
-  .model__fee-min strong { font-size: 17px; }
+  .model__fee-min strong { font-size: 19px; }
 
   /* CAPABILITIES */
   .cap__article { margin-bottom: 32px; }
