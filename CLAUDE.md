@@ -121,12 +121,12 @@ Each section is full-viewport on desktop. Hero is contact-forward — Email and 
 
 ## 7. Tech stack (the revamp)
 
-- **Astro** (latest stable) — static-only build, zero JS by default, opt-in islands
-- **TypeScript** for all components and scripts
-- **Tailwind CSS** for utility-first styling, with CSS custom properties for the brand palette
-- **GSAP** for the scroll-driven animations (replaces the IntersectionObserver hand-rolled version)
+- **Astro** 6.x (currently `^6.3`) — static-only build, zero JS by default, opt-in islands
+- **TypeScript** strict (`astro/tsconfigs/strict`) for all components and scripts
+- **Tailwind CSS** v4 (`^4.3`) via `@tailwindcss/vite`, with brand tokens declared in a `@theme` block inside `src/styles/global.css` (no `tailwind.config.{js,ts}`)
+- **GSAP** 3.x (`^3.15`) for the scroll-driven animations (replaces the IntersectionObserver hand-rolled version)
 - **Lenis** for smooth scrolling — optional, only if it improves the feel
-- **GitHub Actions** for build and deploy to GitHub Pages
+- **GitHub Actions** for build and deploy to GitHub Pages via `withastro/action` + `actions/deploy-pages` (Pages artifact, no `gh-pages` branch)
 - **No** analytics, **no** cookie banner (no cookies set), **no** tracking pixels, **no** chat widgets
 
 ### Performance budget
@@ -222,18 +222,21 @@ npm run build
 
 # GitHub Actions workflow at .github/workflows/deploy.yml:
 # - on: push to main
-# - run: npm ci && npm run build
-# - deploy ./dist to gh-pages branch (or directly via Pages action)
+# - uses withastro/action@v3 (npm ci + astro build + uploads Pages artifact)
+# - uses actions/deploy-pages@v4 to publish the artifact
+# - no gh-pages branch involved; Pages source must be set to "GitHub Actions"
 ```
 
 GitHub repo: `benzpaws/Ninth-Protocol`
-Live URL: `https://benzpaws.github.io/Ninth-Protocol/`
+Live URL: `https://ninthprotocol.eu`
 
-Astro config must set:
+Custom domain is the apex `ninthprotocol.eu`, pinned via `public/CNAME`. Site is served from the domain root — no project base path.
+
+Astro config sets:
 ```js
 export default defineConfig({
-  site: 'https://benzpaws.github.io',
-  base: '/Ninth-Protocol',
+  site: 'https://ninthprotocol.eu',
+  // no `base` — defaults to '/'
 })
 ```
 

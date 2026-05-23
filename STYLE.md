@@ -28,7 +28,7 @@ Read `CLAUDE.md` first.
 }
 ```
 
-Tailwind config should expose these as `colors.indigo.{shade}`, `colors.gold.{shade}`, `colors.paper.{shade}`, `colors.ink.{shade}`.
+Under Tailwind v4, these are declared inside a `@theme { ... }` block in `src/styles/global.css` as `--color-indigo`, `--color-indigo-deep`, `--color-indigo-night`, `--color-gold`, `--color-gold-soft`, `--color-gold-deep`, `--color-paper`, `--color-paper-warm`, `--color-off-white`, `--color-ink`, `--color-ink-soft`, `--color-ink-faint`. They surface as flat utility classes (`bg-indigo-night`, `text-gold-soft`, `text-ink-faint`) — no shade nesting. There is no `tailwind.config.{js,ts}` file in this project. The `rgba()` tokens (`--gold-line`, `--gold-faint`) are kept as plain CSS custom properties on `:root`.
 
 ## Typography system
 

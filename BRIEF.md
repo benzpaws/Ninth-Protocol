@@ -14,18 +14,19 @@ The current site is good. The revamp is not because it's bad — it's because th
 
 Build this in five distinct sessions, each one a clean commit. Do not start the next milestone until the previous is reviewed and committed.
 
-### Milestone 1 — Astro foundation
+### Milestone 1 — Astro foundation ✓ shipped 2026-05-23
 
 Scaffold the project. Make it deploy. No design work yet.
 
-- `npm create astro@latest` with TypeScript strict, Tailwind integration
-- Configure `astro.config.mjs` for GitHub Pages base path (`/Ninth-Protocol`)
-- Set up Tailwind with brand color tokens, font families, and a typography scale
+- `npm create astro@latest` with TypeScript strict (`astro/tsconfigs/strict`) — landed on Astro `^6.3`
+- Configure `astro.config.mjs` for the apex custom domain `ninthprotocol.eu` (`site` only, no `base`)
+- Set up Tailwind v4 via `@tailwindcss/vite` with brand color tokens, font families, and a typography scale declared in a `@theme` block in `src/styles/global.css` (no JS config file)
 - Add Cormorant Garamond, Inter, JetBrains Mono via `<link>` tags with preconnect
-- Create `.github/workflows/deploy.yml` that builds and deploys to `gh-pages` branch on push to `main`
-- Verify the empty Astro site deploys and is viewable at the GitHub Pages URL
-- Add `.nojekyll` in the public folder
-- Commit: "chore: scaffold Astro project with deploy pipeline"
+- Create `.github/workflows/deploy.yml` using `withastro/action@v3` + `actions/deploy-pages@v4` (modern Pages artifact path; no `gh-pages` branch). Requires GitHub Pages "Source" set to **GitHub Actions**.
+- Add `public/CNAME` containing `ninthprotocol.eu`
+- Add `public/.nojekyll`
+- Verify the placeholder Astro site is reachable at `https://ninthprotocol.eu`
+- Commits: see `M1_DONE.md`
 
 ### Milestone 2 — Component port (visual parity, not improvement)
 
@@ -130,7 +131,7 @@ Commit: "feat: elevation pass — motion, trust signals, performance, a11y"
 
 ## What to ship at the end
 
-- A live site at `https://benzpaws.github.io/Ninth-Protocol/`
+- A live site at `https://ninthprotocol.eu`
 - Lighthouse mobile: 100 / 100 / 100 / 100
 - Full keyboard navigability
 - Installable to home screen on iOS and Android
