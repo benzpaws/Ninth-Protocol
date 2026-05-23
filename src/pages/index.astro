@@ -1,17 +1,69 @@
 ---
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap"
+    />
+    <title>Ninth Protocol — Private Procurement</title>
+  </head>
+  <body class="min-h-screen bg-indigo-night text-off-white font-serif antialiased">
+    <main class="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-6 py-24">
+      <p
+        id="overline"
+        class="font-mono text-[11px] uppercase tracking-[0.4em] text-gold"
+      >
+        §0 — Reconstruction
+      </p>
+
+      <h1 class="mt-8 text-4xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+        Ninth Protocol
+      </h1>
+
+      <p class="mt-6 max-w-xl text-lg italic text-off-white/80">
+        The site is being rebuilt. The firm is operating as usual.
+      </p>
+
+      <div class="mt-10 h-px w-24 origin-left bg-gold/70"></div>
+
+      <p class="mt-10 max-w-xl text-base text-off-white/60">
+        Direct contact remains the fastest route. Email
+        <a
+          class="text-gold underline-offset-4 hover:underline"
+          href="mailto:JRughooputh@ninthprotocol.eu">JRughooputh@ninthprotocol.eu</a
+        >.
+      </p>
+
+      <p
+        class="mt-16 font-mono text-[10px] uppercase tracking-[0.32em] text-off-white/40"
+      >
+        Milestone 1 · Astro foundation · Pipeline verified
+      </p>
+    </main>
+
+    <script>
+      import { gsap } from 'gsap';
+
+      const overline = document.getElementById('overline');
+      if (overline && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.from(overline, {
+          opacity: 0,
+          y: 8,
+          duration: 0.8,
+          ease: 'power3.out',
+          delay: 0.2,
+        });
+      }
+    </script>
+  </body>
 </html>
