@@ -31,11 +31,11 @@ export const SITE = {
   whatsapp: {
     display: '+1 437 249 0909',
     raw: '14372490909',
-    prefilledMessage: "Hello Ninth Protocol — I'd like to discuss a private mandate.",
+    prefilledMessage: "Hello Ninth Protocol. I'd like to discuss a private mandate.",
   },
 
   og: {
-    title: 'Ninth Protocol — Private Procurement',
+    title: 'Ninth Protocol · Private Procurement',
     description: 'For those who answer to no one.',
     image: '/assets/np-lockup-square.png',
   },
@@ -43,7 +43,7 @@ export const SITE = {
   transparency: {
     label: 'Transparency',
     plain: 'Most procurement firms hide their margins inside supplier commissions.',
-    italic: 'We publish ours — in full, before any mandate begins.',
+    italic: 'We publish ours in full, before any mandate begins.',
   },
 
   fee: {
@@ -73,17 +73,17 @@ export const SITE = {
     {
       num: '01',
       title: 'Automotive & Aviation',
-      body: 'Hypercars and collector vehicles. JDM acquisitions. Coachbuilt commissions. Private aircraft and discreet charter. Listed, auction, or off-market — sourced and delivered.',
+      body: 'Hypercars and collector vehicles. JDM acquisitions. Coachbuilt commissions. Private aircraft and discreet charter. Listed, auction, or off-market. Sourced and delivered.',
     },
     {
       num: '02',
       title: 'Horology & Collectibles',
-      body: 'Reference-grade Patek, AP, Richard Mille. Art, jewellery, instruments. Sourced from boutiques, auctions, or private collections — including allocations and waitlists.',
+      body: 'Reference-grade Patek, AP, Richard Mille. Art, jewellery, instruments. Sourced from boutiques, auctions, or private collections, including allocations and waitlists.',
     },
     {
       num: '03',
       title: 'Experiences & Access',
-      body: 'Invitation-only events. Private itineraries. Standing reservations. Introductions and access — from sold-out fixtures to closed-door rooms.',
+      body: 'Invitation-only events. Private itineraries. Standing reservations. Introductions and access, from sold-out fixtures to closed-door rooms.',
     },
     {
       num: '04',

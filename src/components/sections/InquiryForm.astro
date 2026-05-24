@@ -4,7 +4,7 @@ import { SITE } from '../../content/site';
 
 <form id="inquiry-form" class="form" novalidate>
   <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-  <input type="hidden" name="subject" value="New Inquiry — ninthprotocol.eu" />
+  <input type="hidden" name="subject" value="New Inquiry · ninthprotocol.eu" />
   <input type="hidden" name="from_name" value="Ninth Protocol Website" />
   <input type="hidden" name="reference" id="formReference" value="" />
   <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
@@ -12,7 +12,7 @@ import { SITE } from '../../content/site';
   <div class="form__meta">
     <div class="form__meta-item">
       <span>Reference</span>
-      <strong id="formRefDisplay">NP-——————</strong>
+      <strong id="formRefDisplay">NP-</strong>
     </div>
     <div class="form__meta-item">
       <span>Reviewed within</span>
@@ -42,7 +42,7 @@ import { SITE } from '../../content/site';
   <div class="form__field">
     <label for="nature"><span class="form__num">04</span>Nature of Inquiry</label>
     <select id="nature" name="nature" required>
-      <option value="" disabled selected>— Select a category —</option>
+      <option value="" disabled selected>Select a category</option>
       <option value="Automotive">Automotive</option>
       <option value="Aviation">Aviation</option>
       <option value="Horology">Horology</option>
@@ -131,12 +131,12 @@ import { SITE } from '../../content/site';
 
       data.set('message', message);
       data.set('replyto', email);
-      data.set('subject', 'New Inquiry — ' + nature + ' — ' + fullName + ' — ' + ref);
+      data.set('subject', 'New Inquiry · ' + nature + ' · ' + fullName + ' · ' + ref);
 
       var accessKey = data.get('access_key');
 
       if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-        var subject = encodeURIComponent('New Inquiry — ' + nature + ' — ' + fullName + ' — ' + ref);
+        var subject = encodeURIComponent('New Inquiry · ' + nature + ' · ' + fullName + ' · ' + ref);
         var body = encodeURIComponent(message);
         window.location.href = 'mailto:' + contactEmail + '?subject=' + subject + '&body=' + body;
         status.textContent = 'Opening your email client. Reference: ' + ref;
