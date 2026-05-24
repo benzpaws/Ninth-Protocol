@@ -73,6 +73,29 @@ const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/'
     </main>
 
     <Footer />
+
+    <script is:inline>
+      // Drives the hero is-loaded cascade. Moves into Preloader.astro when
+      // chrome is ported; for now it lives here so the page is scrollable
+      // (body.is-loading locks overflow) and the hero opens correctly.
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function flip() {
+          document.body.classList.remove('is-loading');
+          document.body.classList.add('is-loaded');
+        }
+        if (reduced) {
+          flip();
+        } else if (document.readyState === 'complete') {
+          setTimeout(flip, 1900);
+        } else {
+          window.addEventListener('load', function () {
+            setTimeout(flip, 1900);
+          });
+        }
+        setTimeout(flip, 4000);
+      })();
+    </script>
   </body>
 </html>
 

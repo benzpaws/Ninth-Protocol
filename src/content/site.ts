@@ -13,6 +13,19 @@ export const SITE = {
   },
   sub: 'A private procurement firm. Conflict-free. Discreet. Accountable to one principal only.',
 
+  hero: {
+    stamp: 'CONFIDENTIAL · PRIVATE CIRCULATION',
+    footerNote: 'New clients by referral or application.',
+    scrollCue: 'Continue',
+  },
+
+  articles: {
+    hero: { roman: '§I', name: 'Identity' },
+    model: { roman: '§II', name: 'The Model' },
+    capabilities: { roman: '§III', name: 'Capabilities' },
+    contact: { roman: '§IV', name: 'Contact' },
+  },
+
   email: 'JRughooputh@ninthprotocol.eu',
 
   whatsapp: {
