@@ -95,6 +95,43 @@ const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/'
         }
         setTimeout(flip, 4000);
       })();
+
+      // Bidirectional reveal engine. Each [data-anim] element gets one of
+      // three states depending on its viewport position so reveals look
+      // right scrolling both down and up. Mirrors archive/v1/script.js.
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var animEls = Array.prototype.slice.call(document.querySelectorAll('[data-anim]'));
+
+        if (reduced || !('IntersectionObserver' in window)) {
+          animEls.forEach(function (el) { el.classList.add('is-in'); });
+          return;
+        }
+
+        animEls.forEach(function (el) { el.classList.add('is-out-down'); });
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var el = entry.target;
+            var rect = entry.boundingClientRect;
+            if (entry.isIntersecting) {
+              el.classList.remove('is-out-up', 'is-out-down');
+              el.classList.add('is-in');
+            } else {
+              el.classList.remove('is-in');
+              if (rect.top < 0) {
+                el.classList.add('is-out-up');
+                el.classList.remove('is-out-down');
+              } else {
+                el.classList.add('is-out-down');
+                el.classList.remove('is-out-up');
+              }
+            }
+          });
+        }, { threshold: [0, 0.05, 0.1], rootMargin: '-5% 0px -5% 0px' });
+
+        animEls.forEach(function (el) { observer.observe(el); });
+      })();
     </script>
   </body>
 </html>

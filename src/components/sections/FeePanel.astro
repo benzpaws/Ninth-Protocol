@@ -1,19 +1,334 @@
 ---
-// Stub. Composed by Model.astro when §II is ported. Holds the §15-protected
-// fee structure markup.
+import { SITE } from '../../content/site';
+
+const fee = SITE.fee;
 ---
 
-<div class="stub-fee" data-stub="FeePanel">[FeePanel]</div>
+<div class="model__fee" data-anim>
+  <div class="model__fee-corner model__fee-corner--tl"></div>
+  <div class="model__fee-corner model__fee-corner--tr"></div>
+  <div class="model__fee-corner model__fee-corner--bl"></div>
+  <div class="model__fee-corner model__fee-corner--br"></div>
 
-<style>
-  .stub-fee {
-    padding: 24px;
-    border: 1px dashed var(--color-gold);
+  <p class="model__fee-label">{fee.label}</p>
+  <div class="model__fee-title-rule"></div>
+
+  <div class="model__fee-tiers">
+
+    <div class="tier">
+      <p class="tier__roman">{fee.tier1.roman}</p>
+      <p class="tier__range">{fee.tier1.range}</p>
+      <p class="tier__amount">
+        <span class="tier__currency">{fee.tier1.currency}</span>
+        <span class="tier__number">{fee.tier1.amount}</span>
+      </p>
+      <p class="tier__qualifier">{fee.tier1.qualifier}</p>
+    </div>
+
+    <div class="model__fee-divider" aria-hidden="true">
+      <span class="model__fee-divider-line"></span>
+      <span class="model__fee-divider-mark">/</span>
+      <span class="model__fee-divider-line"></span>
+    </div>
+
+    <div class="tier">
+      <p class="tier__roman">{fee.tier2.roman}</p>
+      <p class="tier__range">{fee.tier2.range}</p>
+      <p class="tier__amount tier__amount--pct">
+        <span class="tier__pct">{fee.tier2.pctLow}<span class="tier__pct-symbol">%</span></span>
+        <span class="tier__pct-divider">–</span>
+        <span class="tier__pct">{fee.tier2.pctHigh}<span class="tier__pct-symbol">%</span></span>
+      </p>
+      <p class="tier__qualifier">{fee.tier2.qualifier}</p>
+    </div>
+
+  </div>
+
+  <div class="model__fee-rule"></div>
+
+  <ul class="model__fee-list">
+    <li>{fee.rules[0]}</li>
+    <li class="dot"></li>
+    <li>{fee.rules[1]}</li>
+    <li class="dot"></li>
+    <li>{fee.rules[2]}</li>
+  </ul>
+
+  <p class="model__fee-min">
+    <span>{fee.minimum.label}</span>
+    <strong>{fee.minimum.value}</strong>
+  </p>
+</div>
+
+<style is:global>
+  .model__fee {
+    position: relative;
+    max-width: 920px;
+    margin: 0 auto 72px;
+    padding: 72px 64px 56px;
+    background:
+      linear-gradient(180deg,
+        rgba(192, 161, 30, 0.06) 0%,
+        rgba(192, 161, 30, 0.03) 100%
+      );
+    border: 1px solid var(--gold-line);
+    text-align: center;
+  }
+
+  .model__fee-corner {
+    position: absolute;
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--color-gold);
+  }
+  .model__fee-corner--tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .model__fee-corner--tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+  .model__fee-corner--bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+  .model__fee-corner--br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .model__fee-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
     color: var(--color-gold);
+    margin-bottom: 18px;
+    font-weight: 400;
+  }
+
+  .model__fee-title-rule {
+    width: 56px; height: 1px;
+    background: var(--color-gold);
+    margin: 0 auto 56px;
+    opacity: 0.6;
+  }
+
+  .model__fee-tiers {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 36px;
+    align-items: stretch;
+    margin-bottom: 48px;
+  }
+
+  .tier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0 12px;
+  }
+
+  .tier__roman {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+  }
+
+  .tier__range {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    font-weight: 400;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gold-line);
+    display: inline-block;
+  }
+
+  .tier__amount {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: var(--color-gold);
+  }
+
+  .tier__currency {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.22em;
+    color: var(--color-gold);
+    opacity: 0.85;
+    align-self: flex-start;
+    padding-top: 16px;
+    font-weight: 400;
+  }
+
+  .tier__number {
+    font-size: clamp(80px, 12vw, 134px);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    color: var(--color-gold);
+    line-height: 0.95;
+    text-shadow: 0 1px 0 rgba(192, 161, 30, 0.1);
+  }
+
+  .tier__amount--pct { gap: 16px; }
+
+  .tier__pct {
+    font-family: var(--font-serif);
+    font-size: clamp(80px, 12vw, 134px);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    color: var(--color-gold);
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 0.95;
+  }
+
+  .tier__pct-symbol {
+    font-size: 0.42em;
+    margin-left: 0.04em;
+    letter-spacing: 0;
+    color: var(--color-gold);
+    opacity: 0.78;
+    font-weight: 300;
+  }
+
+  .tier__pct-divider {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--color-gold);
+    align-self: center;
+    font-weight: 300;
+    opacity: 0.55;
+  }
+
+  .tier__qualifier {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--color-indigo);
+    opacity: 0.78;
+    line-height: 1.45;
+    max-width: 240px;
+    margin-top: 4px;
+  }
+
+  .model__fee-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    height: auto;
+    justify-content: center;
+    padding: 80px 0 0;
+  }
+
+  .model__fee-divider-line {
+    width: 1px;
+    flex: 1;
+    background: var(--gold-line);
+    min-height: 40px;
+  }
+
+  .model__fee-divider-mark {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--color-gold);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  .model__fee-rule {
+    width: 80px; height: 1px;
+    background: var(--color-gold);
+    opacity: 0.5;
+    margin: 0 auto 32px;
+  }
+
+  .model__fee-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--color-indigo);
+    margin-bottom: 36px;
+    list-style: none;
+    letter-spacing: 0.005em;
+  }
+
+  .model__fee-list .dot {
+    width: 5px; height: 5px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+
+  .model__fee-min {
+    padding-top: 28px;
+    border-top: 1px solid var(--gold-line);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .model__fee-min span {
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
-    text-align: center;
+    color: var(--color-ink-soft);
+    opacity: 0.75;
+    font-weight: 400;
+  }
+
+  .model__fee-min strong {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--color-indigo);
+    letter-spacing: 0.005em;
+  }
+
+  @media (max-width: 720px) {
+    .model__fee { padding: 48px 24px 36px; margin-bottom: 56px; max-width: 100%; }
+    .model__fee-label { font-size: 11px; letter-spacing: 0.4em; }
+    .model__fee-title-rule { margin-bottom: 40px; }
+    .model__fee-tiers {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .model__fee-divider {
+      flex-direction: row;
+      padding: 12px 0;
+      width: 100%;
+    }
+    .model__fee-divider-line {
+      height: 1px;
+      width: auto;
+      flex: 1;
+      min-height: 0;
+    }
+    .model__fee-divider-mark { font-size: 20px; }
+    .tier__roman { font-size: 18px; margin-bottom: 8px; }
+    .tier__range { font-size: 11px; letter-spacing: 0.28em; margin-bottom: 24px; padding-bottom: 12px; }
+    .tier__number { font-size: clamp(64px, 18vw, 92px); }
+    .tier__pct { font-size: clamp(64px, 18vw, 92px); }
+    .tier__pct-divider { font-size: clamp(26px, 7vw, 36px); }
+    .tier__currency { font-size: 14px; padding-top: 10px; }
+    .tier__qualifier { font-size: 16px; max-width: 300px; }
+    .model__fee-list { gap: 8px; font-size: 16px; flex-direction: row; }
+    .model__fee-list .dot { display: none; }
+    .model__fee-list li { width: 100%; text-align: center; }
+    .model__fee-min strong { font-size: 19px; }
   }
 </style>

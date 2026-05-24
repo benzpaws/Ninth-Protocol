@@ -1,28 +1,303 @@
 ---
-// Stub. Real §II The Model port comes second in the section pass.
+import { SITE } from '../../content/site';
+import ArticleLabel from '../primitives/ArticleLabel.astro';
+import FeePanel from './FeePanel.astro';
+
+const article = SITE.articles.model;
+const transparency = SITE.transparency;
 ---
 
-<section class="stub-section stub-section--model" id="model">
-  <span class="stub-section__label">§II · The Model · [Model + FeePanel]</span>
+<section class="section section--model" id="model" data-section="model">
+
+  <div class="model__article" data-anim>
+    <ArticleLabel roman={article.roman} name={article.name} tone="dark" />
+  </div>
+
+  <div class="model__inner">
+
+    <p class="model__overline" data-anim>Why principals choose us</p>
+
+    <h2 class="model__headline" data-anim>
+      <span class="reveal-line"><span class="reveal-line__inner">A different structure</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">entirely.</span></span>
+    </h2>
+
+    <div class="model__grid">
+
+      <div class="model__col model__col--ours" data-anim>
+        <span class="model__col-label">Ninth Protocol</span>
+        <p class="model__col-headline">We work for you. Only.</p>
+        <ul class="model__list">
+          <li><span class="check">✓</span> Fee agreed with the client in advance</li>
+          <li><span class="check">✓</span> No commissions from any third party</li>
+          <li><span class="check">✓</span> No preferred suppliers or partners</li>
+          <li><span class="check">✓</span> One principal at a time</li>
+          <li><span class="check">✓</span> Discretion enforced beyond the mandate</li>
+        </ul>
+      </div>
+
+      <div class="model__divider" aria-hidden="true">
+        <div class="model__divider-rule"></div>
+        <span class="model__divider-vs">vs</span>
+        <div class="model__divider-rule"></div>
+      </div>
+
+      <div class="model__col model__col--theirs" data-anim>
+        <span class="model__col-label model__col-label--muted">Concierge firms</span>
+        <p class="model__col-headline model__col-headline--muted">Compensated by suppliers.</p>
+        <ul class="model__list model__list--muted">
+          <li><span class="cross">—</span> Client fees plus supplier commissions</li>
+          <li><span class="cross">—</span> Preferred-vendor agreements</li>
+          <li><span class="cross">—</span> Incentivised to close every deal</li>
+          <li><span class="cross">—</span> Scaled across many clients at once</li>
+          <li><span class="cross">—</span> Conflict of interest by design</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="model__transparency" data-anim>
+      <p class="model__transparency-label">{transparency.label}</p>
+      <div class="model__transparency-rule"></div>
+      <p class="model__transparency-statement">
+        {transparency.plain}
+        <em>{transparency.italic}</em>
+      </p>
+    </div>
+
+    <FeePanel />
+
+    <p class="model__closing" data-anim>
+      <em>A fiduciary relationship cannot exist alongside a commission structure.</em>
+      We chose the former, entirely.
+    </p>
+
+  </div>
 </section>
 
-<style>
-  .stub-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 36px 60px;
-  }
-  .stub-section--model {
+<style is:global>
+  .section--model {
     background: var(--color-paper);
     color: var(--color-ink);
+    padding-top: 120px;
   }
-  .stub-section__label {
+
+  .model__article {
+    display: flex; align-items: center;
+    margin-bottom: 56px;
+    max-width: var(--container);
+    margin-left: auto; margin-right: auto;
+    width: 100%;
+  }
+
+  .model__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    display: flex; flex-direction: column;
+    justify-content: center;
+  }
+
+  .model__overline {
     font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 0.32em;
+    font-size: 12px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 32px;
+    display: inline-flex; align-items: center; gap: 16px;
+    align-self: flex-start;
+  }
+  .model__overline::before {
+    content: ''; display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--color-gold);
+  }
+
+  .model__headline {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 1.02;
+    color: var(--color-indigo);
+    letter-spacing: -0.015em;
+    margin-bottom: 80px;
+  }
+  .model__headline .reveal-line__inner--italic { color: var(--color-gold); }
+
+  .model__grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: stretch;
+    margin-bottom: 80px;
+  }
+
+  .model__col {
+    padding: 36px 0;
+  }
+
+  .model__col-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--color-gold);
+    margin-bottom: 24px;
+  }
+  .model__col-label--muted {
+    color: rgba(58, 53, 72, 0.6);
+    border-bottom-color: rgba(58, 53, 72, 0.2);
+  }
+
+  .model__col-headline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.3;
+    color: var(--color-indigo);
+    margin-bottom: 32px;
+    letter-spacing: -0.005em;
+  }
+  .model__col-headline--muted { color: var(--color-ink-faint); }
+
+  .model__list {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .model__list li {
+    display: flex; align-items: flex-start; gap: 14px;
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .check {
+    flex-shrink: 0;
+    color: var(--color-gold);
+    font-size: 16px;
+    font-weight: 500;
+    width: 22px; height: 22px;
+    border: 1px solid var(--gold-line);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans);
+    margin-top: 2px;
+  }
+  .model__list--muted li { color: var(--color-ink-faint); }
+  .cross {
+    flex-shrink: 0;
+    color: var(--color-ink-faint);
+    font-size: 16px;
+    width: 22px; height: 22px;
+    border: 1px solid rgba(58, 53, 72, 0.15);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans);
+    margin-top: 2px;
+  }
+
+  .model__divider {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 36px 0;
+    gap: 16px;
+    justify-content: center;
+  }
+  .model__divider-rule {
+    width: 1px; flex: 1;
+    background: var(--gold-line);
+    min-height: 60px;
+  }
+  .model__divider-vs {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--color-gold);
+    padding: 8px 0;
+  }
+
+  .model__closing {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.5;
+    color: var(--color-indigo);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .model__closing em {
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .model__transparency {
+    max-width: 720px;
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+
+  .model__transparency-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 14px;
+    font-weight: 400;
+    padding-left: 0.5em;
+  }
+
+  .model__transparency-rule {
+    width: 48px; height: 1px;
+    background: var(--color-gold);
+    opacity: 0.6;
+    margin: 0 auto 24px;
+  }
+
+  .model__transparency-statement {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.3vw, 26px);
+    line-height: 1.5;
+    color: var(--color-indigo);
+    font-weight: 300;
+    letter-spacing: -0.005em;
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .model__transparency-statement em {
+    color: var(--color-gold-deep);
+    font-style: italic;
+    display: block;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 1024px) {
+    .model__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .model__divider { flex-direction: row; padding: 8px 0; }
+    .model__divider-rule { height: 1px; width: auto; flex: 1; min-height: 0; }
+  }
+
+  @media (max-width: 720px) {
+    .section--model { padding-top: 90px; }
+    .model__article { margin-bottom: 32px; }
+    .model__headline { font-size: clamp(36px, 10vw, 56px); margin-bottom: 48px; }
+    .model__col { padding: 20px 0; }
+    .model__col-headline { font-size: 22px; margin-bottom: 22px; }
+    .model__list li { font-size: 17px; gap: 12px; }
+    .model__divider { padding: 12px 0; }
+    .model__closing { font-size: 18px; line-height: 1.5; }
+    .model__transparency { margin-bottom: 28px; max-width: 100%; }
+    .model__transparency-label { font-size: 11px; letter-spacing: 0.4em; }
+    .model__transparency-rule { margin-bottom: 20px; }
+    .model__transparency-statement { font-size: 18px; line-height: 1.5; }
   }
 </style>
