@@ -1,5 +1,4 @@
 ---
-// Stub. Composed by Capabilities.astro when §III is ported.
 import type { Capability } from '../../content/site';
 
 interface Props {
@@ -9,18 +8,68 @@ interface Props {
 const { capability } = Astro.props;
 ---
 
-<article class="stub-card" data-stub="CapabilityCard">
-  [CapabilityCard {capability.num}]
+<article class="cap-card" data-anim>
+  <header>
+    <span class="cap-card__num">{capability.num}</span>
+    <div class="cap-card__rule"></div>
+  </header>
+  <h3>{capability.title}</h3>
+  <p>{capability.body}</p>
 </article>
 
-<style>
-  .stub-card {
-    padding: 16px;
-    border: 1px dashed var(--color-gold);
+<style is:global>
+  .cap-card {
+    padding-top: 32px;
+    border-top: 1px solid var(--gold-line);
+    position: relative;
+    transition: padding-left 0.6s var(--ease-out);
+  }
+
+  .cap-card header {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .cap-card__num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
     color: var(--color-gold);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .cap-card__rule {
+    flex: 1;
+    height: 1px;
+    background: var(--gold-line);
+    transition: background 0.6s var(--ease-out), height 0.4s var(--ease-out);
+  }
+
+  .cap-card:hover { padding-left: 14px; }
+  .cap-card:hover .cap-card__rule { background: var(--color-gold); height: 2px; }
+
+  .cap-card h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(26px, 3vw, 34px);
+    color: var(--color-off-white);
+    margin-bottom: 18px;
+    letter-spacing: 0;
+  }
+
+  .cap-card p {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 19px);
+    line-height: 1.65;
+    color: rgba(245, 242, 236, 0.78);
+  }
+
+  @media (max-width: 720px) {
+    .cap-card { padding-top: 24px; }
+    .cap-card:hover { padding-left: 0; }
+    .cap-card header { gap: 14px; margin-bottom: 18px; }
+    .cap-card__num { font-size: 22px; }
+    .cap-card h3 { font-size: 24px; margin-bottom: 14px; }
+    .cap-card p { font-size: 17px; }
   }
 </style>

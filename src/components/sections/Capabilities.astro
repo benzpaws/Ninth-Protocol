@@ -1,28 +1,110 @@
 ---
-// Stub. Real §III Capabilities port comes third in the section pass.
+import { SITE } from '../../content/site';
+import ArticleLabel from '../primitives/ArticleLabel.astro';
+import CapabilityCard from './CapabilityCard.astro';
+
+const article = SITE.articles.capabilities;
 ---
 
-<section class="stub-section stub-section--cap" id="capabilities">
-  <span class="stub-section__label">§III · Capabilities · [Capabilities + CapabilityCard ×4]</span>
+<section class="section section--capabilities" id="capabilities" data-section="capabilities">
+
+  <div class="cap__article" data-anim>
+    <ArticleLabel roman={article.roman} name={article.name} tone="light" />
+  </div>
+
+  <div class="cap__inner">
+
+    <p class="cap__overline" data-anim>What we are retained to do</p>
+
+    <h2 class="cap__headline" data-anim>
+      <span class="reveal-line"><span class="reveal-line__inner">Four disciplines.</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">One standard.</span></span>
+    </h2>
+
+    <div class="cap__grid">
+      {SITE.capabilities.map((capability) => <CapabilityCard capability={capability} />)}
+    </div>
+
+  </div>
 </section>
 
-<style>
-  .stub-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 36px 60px;
-  }
-  .stub-section--cap {
+<style is:global>
+  .section--capabilities {
     background: var(--color-indigo);
-    color: var(--color-gold);
+    color: var(--color-off-white);
+    padding-top: 120px;
   }
-  .stub-section__label {
+
+  .section--capabilities::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top, rgba(192, 161, 30, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cap__article {
+    display: flex; align-items: center;
+    margin-bottom: 56px;
+    max-width: var(--container);
+    margin-left: auto; margin-right: auto;
+    width: 100%;
+    position: relative; z-index: 2;
+  }
+
+  .cap__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .cap__overline {
     font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 0.32em;
+    font-size: 12px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 32px;
+    display: inline-flex; align-items: center; gap: 16px;
+    align-self: flex-start;
+  }
+  .cap__overline::before {
+    content: ''; display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--color-gold);
+  }
+
+  .cap__headline {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 1.02;
+    color: #FFFFFF;
+    letter-spacing: -0.015em;
+    margin-bottom: 80px;
+  }
+
+  .cap__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px;
+  }
+
+  .cap__grid > [data-anim]:nth-child(1) { transition-delay: 0.00s; }
+  .cap__grid > [data-anim]:nth-child(2) { transition-delay: 0.08s; }
+  .cap__grid > [data-anim]:nth-child(3) { transition-delay: 0.16s; }
+  .cap__grid > [data-anim]:nth-child(4) { transition-delay: 0.24s; }
+
+  @media (max-width: 1024px) {
+    .cap__grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  @media (max-width: 720px) {
+    .section--capabilities { padding-top: 90px; }
+    .cap__article { margin-bottom: 32px; }
+    .cap__headline { font-size: clamp(36px, 10vw, 56px); margin-bottom: 48px; }
   }
 </style>
