@@ -1,0 +1,37 @@
+---
+// Stub. Real implementation wraps the SVG monogram with PNG fallback.
+
+interface Props {
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
+  class?: string;
+}
+
+const { width, height, alt = '', class: className } = Astro.props;
+---
+
+<span
+  class:list={['stub-mark', className]}
+  data-stub="NPMark"
+  style={{ width: width ? `${width}px` : undefined, height: height ? `${height}px` : undefined }}
+  role="img"
+  aria-label={alt || undefined}
+>
+  NP
+</span>
+
+<style>
+  .stub-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--color-gold);
+    color: var(--color-gold);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    min-width: 28px;
+    min-height: 22px;
+  }
+</style>

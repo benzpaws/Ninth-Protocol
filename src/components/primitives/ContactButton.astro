@@ -1,0 +1,41 @@
+---
+// Stub. Real implementation handles both channels and both variants.
+import { mailtoUrl, whatsappUrl } from '../../content/site';
+
+interface Props {
+  channel: 'email' | 'whatsapp';
+  variant?: 'outline' | 'fill';
+  size?: 'md' | 'lg';
+}
+
+const { channel, variant = 'outline', size = 'md' } = Astro.props;
+const href = channel === 'email' ? mailtoUrl : whatsappUrl;
+const label = channel === 'email' ? 'Email' : 'WhatsApp';
+const external = channel === 'whatsapp';
+---
+
+<a
+  class="stub-btn"
+  data-stub="ContactButton"
+  data-channel={channel}
+  data-variant={variant}
+  data-size={size}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+>
+  [{label} · {variant}/{size}]
+</a>
+
+<style>
+  .stub-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px dashed var(--color-gold);
+    color: var(--color-gold);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+</style>

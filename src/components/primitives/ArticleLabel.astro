@@ -1,0 +1,29 @@
+---
+// Stub. Real implementation comes when its first parent section is ported.
+// Always carries data-anim on its root when used inside a §II/§III/§IV section.
+
+interface Props {
+  roman: string;
+  name: string;
+  tone?: 'dark' | 'light';
+}
+
+const { roman, name, tone = 'light' } = Astro.props;
+---
+
+<span class="stub-art" data-stub="ArticleLabel" data-tone={tone}>
+  [ArticleLabel {roman} · {name}]
+</span>
+
+<style>
+  .stub-art {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px dashed currentColor;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+</style>

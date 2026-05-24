@@ -1,0 +1,26 @@
+---
+// Stub. Composed by Capabilities.astro when §III is ported.
+import type { Capability } from '../../content/site';
+
+interface Props {
+  capability: Capability;
+}
+
+const { capability } = Astro.props;
+---
+
+<article class="stub-card" data-stub="CapabilityCard">
+  [CapabilityCard {capability.num}]
+</article>
+
+<style>
+  .stub-card {
+    padding: 16px;
+    border: 1px dashed var(--color-gold);
+    color: var(--color-gold);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+</style>
