@@ -75,25 +75,111 @@ const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/'
     <Footer />
 
     <script is:inline>
-      // Drives the hero is-loaded cascade. Moves into Preloader.astro when
-      // chrome is ported; for now it lives here so the page is scrollable
-      // (body.is-loading locks overflow) and the hero opens correctly.
+      // Preloader dismiss + hero is-loaded cascade. Marks the preloader done
+      // (fading it out) and flips body.is-loading → body.is-loaded so the
+      // hero opens and overflow unlocks. Mirrors archive/v1/script.js.
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function flip() {
+        function dismiss() {
+          var preloader = document.getElementById('preloader');
+          if (preloader) preloader.classList.add('is-done');
           document.body.classList.remove('is-loading');
           document.body.classList.add('is-loaded');
         }
         if (reduced) {
-          flip();
+          dismiss();
         } else if (document.readyState === 'complete') {
-          setTimeout(flip, 1900);
+          setTimeout(dismiss, 1900);
         } else {
           window.addEventListener('load', function () {
-            setTimeout(flip, 1900);
+            setTimeout(dismiss, 1900);
           });
         }
-        setTimeout(flip, 4000);
+        setTimeout(dismiss, 4000);
+      })();
+
+      // Smooth anchor scroll. Offsets target by topbar height; closes mobile
+      // drawer if open so the destination is actually visible.
+      (function () {
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            var id = this.getAttribute('href');
+            if (!id || id === '#') return;
+
+            var drawer = document.getElementById('drawer');
+            if (drawer && drawer.classList.contains('is-open')) {
+              drawer.classList.remove('is-open');
+              var toggle = document.getElementById('menuToggle');
+              if (toggle) {
+                toggle.classList.remove('is-open');
+                toggle.setAttribute('aria-expanded', 'false');
+              }
+              document.body.classList.remove('menu-open');
+            }
+
+            if (id === '#top') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              return;
+            }
+
+            var target = document.querySelector(id);
+            if (target) {
+              e.preventDefault();
+              var y = target.getBoundingClientRect().top + window.pageYOffset - 70;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          });
+        });
+      })();
+
+      // rAF-throttled scroll handler: scroll-progress bar + topbar hide on
+      // scroll-down / show on scroll-up + parallax for background marks.
+      (function () {
+        var progress = document.getElementById('scrollProgress');
+        var topbar = document.getElementById('topbar');
+        var parallaxEls = Array.prototype.slice.call(
+          document.querySelectorAll('.hero__bg-mark, .contact__bg-mark')
+        ).map(function (el) { return { el: el, factor: 0.15 }; });
+
+        var lastY = window.scrollY;
+        var ticking = false;
+
+        function update() {
+          var y = window.scrollY;
+
+          if (progress) {
+            var max = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.transform = 'scaleX(' + (y / Math.max(max, 1)) + ')';
+          }
+
+          if (topbar) {
+            if (y > 200 && y > lastY + 8) {
+              topbar.classList.add('is-hidden');
+            } else if (y < lastY - 8 || y < 100) {
+              topbar.classList.remove('is-hidden');
+            }
+          }
+
+          parallaxEls.forEach(function (item) {
+            var parent = item.el.parentElement;
+            if (!parent) return;
+            var rect = parent.getBoundingClientRect();
+            var center = rect.top + rect.height / 2;
+            var offset = (center - window.innerHeight / 2) * item.factor * -1;
+            item.el.style.setProperty('--parallax-y', offset.toFixed(1));
+          });
+
+          lastY = y;
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+          }
+        }, { passive: true });
       })();
 
       // Bidirectional reveal engine. Each [data-anim] element gets one of

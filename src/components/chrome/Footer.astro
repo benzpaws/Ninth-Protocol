@@ -1,19 +1,102 @@
 ---
-// Stub. Real implementation comes in the chrome pass after sections are ported.
+import { SITE } from '../../content/site';
+import NPMark from '../primitives/NPMark.astro';
 ---
 
-<footer class="stub stub--footer" data-stub="Footer">[Footer]</footer>
+<footer class="footer">
+  <div class="footer__bar"></div>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__mark">
+        <NPMark alt="" />
+      </span>
+      <div class="footer__brand-text">
+        <p class="footer__name">{SITE.name.toUpperCase()}</p>
+        <p class="footer__tag">{SITE.tagline}</p>
+      </div>
+    </div>
 
-<style>
-  .stub--footer {
-    padding: 32px 20px;
+    <div class="footer__meta">
+      <p>Ninth Protocol OÜ · Estonia</p>
+      <p class="footer__small">© 2025–<span id="year">2026</span> · Classification: Private</p>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('year');
+    if (el) el.textContent = String(new Date().getFullYear());
+  })();
+</script>
+
+<style is:global>
+  .footer {
     background: var(--color-indigo-ink);
-    border-top: 1px dashed var(--color-gold);
+    color: rgba(245, 242, 236, 0.7);
+  }
+
+  .footer__bar {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  .footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 40px 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer__brand {
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  .footer__mark {
+    width: 40px; height: 34px;
+    display: inline-flex;
+  }
+  .footer__mark img { max-width: 100%; max-height: 100%; height: 100%; object-fit: contain; }
+
+  .footer__name {
+    font-family: var(--font-serif);
+    font-size: 12px;
+    letter-spacing: 0.35em;
     color: var(--color-gold);
+  }
+
+  .footer__tag {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 12px;
+    color: rgba(245, 242, 236, 0.5);
+    margin-top: 2px;
+  }
+
+  .footer__meta {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    text-align: right;
+    color: rgba(245, 242, 236, 0.55);
+  }
+
+  .footer__small {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+    color: rgba(245, 242, 236, 0.35);
+  }
+
+  @media (max-width: 720px) {
+    .footer__inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 18px;
+      padding: 32px 20px;
+    }
+    .footer__meta { text-align: center; }
   }
 </style>

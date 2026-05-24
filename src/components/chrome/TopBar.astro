@@ -1,21 +1,143 @@
 ---
-// Stub. Real implementation comes in the chrome pass after sections are ported.
+import { SITE } from '../../content/site';
+import NPMark from '../primitives/NPMark.astro';
 ---
 
-<div class="stub stub--topbar" data-stub="TopBar">[TopBar]</div>
+<header class="topbar" id="topbar">
+  <div class="topbar__inner">
+    <a href="#top" class="topbar__brand" aria-label={SITE.name}>
+      <span class="topbar__mark">
+        <NPMark alt="" />
+      </span>
+      <span class="topbar__name">{SITE.name.toUpperCase()}</span>
+    </a>
 
-<style>
-  .stub--topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    padding: 12px 20px;
+    <nav class="topbar__nav" aria-label="Primary">
+      <a href="#model" class="topbar__link">{SITE.articles.model.roman} <em>{SITE.articles.model.name}</em></a>
+      <a href="#capabilities" class="topbar__link">{SITE.articles.capabilities.roman} <em>{SITE.articles.capabilities.name}</em></a>
+      <a href="#contact" class="topbar__cta">
+        <span>{SITE.articles.contact.name}</span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+
+    <button class="topbar__menu" id="menuToggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style is:global>
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
     background: rgba(14, 11, 34, 0.84);
-    border-bottom: 1px dashed var(--color-gold);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border-bottom: 1px solid var(--gold-line);
+    transition: transform 0.5s var(--ease-out);
+    padding-top: env(safe-area-inset-top, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+  .topbar.is-hidden { transform: translateY(-100%); }
+
+  .topbar__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 16px 36px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 32px;
+  }
+
+  .topbar__brand {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--color-off-white);
+  }
+
+  .topbar__mark {
+    width: 44px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .topbar__mark img {
+    max-width: 100%; max-height: 100%;
+    width: auto; height: 100%; object-fit: contain;
+  }
+
+  .topbar__name {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    letter-spacing: 0.32em;
     color: var(--color-gold);
+    font-weight: 400;
+  }
+
+  .topbar__nav {
+    display: flex; gap: 32px; align-items: center;
+  }
+
+  .topbar__link {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: rgba(245, 242, 236, 0.78);
+    transition: color var(--dur-quick) ease;
+    display: inline-flex; align-items: baseline; gap: 8px;
+  }
+  .topbar__link em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .topbar__link:hover { color: var(--color-gold); }
+
+  .topbar__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--color-gold) !important;
+    padding: 10px 20px;
+    border: 1px solid var(--gold-line);
+    transition: all var(--dur-quick) ease;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+  }
+  .topbar__cta:hover {
+    background: var(--color-gold);
+    color: var(--color-indigo) !important;
+    border-color: var(--color-gold);
+  }
+  .topbar__cta .arrow { transition: transform var(--dur-quick) ease; }
+  .topbar__cta:hover .arrow { transform: translateX(4px); }
+
+  .topbar__menu {
+    display: none;
+    background: none; border: none;
+    width: 34px; height: 34px;
+    position: relative; padding: 0;
+  }
+  .topbar__menu span {
+    position: absolute; left: 4px; right: 4px;
+    height: 1px;
+    background: var(--color-gold);
+    transition: transform 0.4s var(--ease-out), opacity 0.2s ease;
+  }
+  .topbar__menu span:nth-child(1) { top: 13px; }
+  .topbar__menu span:nth-child(2) { top: 21px; }
+  .topbar__menu.is-open span:nth-child(1) { top: 17px; transform: rotate(45deg); }
+  .topbar__menu.is-open span:nth-child(2) { top: 17px; transform: rotate(-45deg); }
+
+  @media (max-width: 1024px) {
+    .topbar__inner { padding: 14px 24px; }
+    .topbar__nav { display: none; }
+    .topbar__menu { display: block; }
+  }
+
+  @media (max-width: 720px) {
+    .topbar__inner { padding: 12px 20px; }
+    .topbar__name { font-size: 13px; letter-spacing: 0.28em; }
+    .topbar__mark { width: 36px; height: 30px; }
   }
 </style>
