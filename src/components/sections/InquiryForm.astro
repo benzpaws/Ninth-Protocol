@@ -1,19 +1,318 @@
 ---
-// Stub. Composed by Contact.astro when §IV is ported. Includes the
-// reference generator and Web3Forms-with-mailto-fallback submit handler.
+import { SITE } from '../../content/site';
 ---
 
-<div class="stub-form" data-stub="InquiryForm">[InquiryForm]</div>
+<form id="inquiry-form" class="form" novalidate>
+  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+  <input type="hidden" name="subject" value="New Inquiry — ninthprotocol.eu" />
+  <input type="hidden" name="from_name" value="Ninth Protocol Website" />
+  <input type="hidden" name="reference" id="formReference" value="" />
+  <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" />
 
-<style>
-  .stub-form {
-    padding: 24px;
-    border: 1px dashed var(--color-gold);
-    color: var(--color-gold);
+  <div class="form__meta">
+    <div class="form__meta-item">
+      <span>Reference</span>
+      <strong id="formRefDisplay">NP-——————</strong>
+    </div>
+    <div class="form__meta-item">
+      <span>Reviewed within</span>
+      <strong>24 hours</strong>
+    </div>
+  </div>
+
+  <div class="form__grid">
+    <div class="form__field">
+      <label for="firstName"><span class="form__num">01</span>First Name</label>
+      <input type="text" id="firstName" name="firstName" required autocomplete="given-name" />
+      <div class="form__rule"></div>
+    </div>
+    <div class="form__field">
+      <label for="lastName"><span class="form__num">02</span>Last Name</label>
+      <input type="text" id="lastName" name="lastName" required autocomplete="family-name" />
+      <div class="form__rule"></div>
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label for="email"><span class="form__num">03</span>Email Address</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+    <div class="form__rule"></div>
+  </div>
+
+  <div class="form__field">
+    <label for="nature"><span class="form__num">04</span>Nature of Inquiry</label>
+    <select id="nature" name="nature" required>
+      <option value="" disabled selected>— Select a category —</option>
+      <option value="Automotive">Automotive</option>
+      <option value="Aviation">Aviation</option>
+      <option value="Horology">Horology</option>
+      <option value="Experiences">Experiences</option>
+      <option value="Logistics">Logistics</option>
+      <option value="Other">Other</option>
+    </select>
+    <div class="form__rule"></div>
+  </div>
+
+  <div class="form__field">
+    <label for="context"><span class="form__num">05</span>Brief Context</label>
+    <textarea id="context" name="context" rows="4" required placeholder="Scope, timing, and any relevant constraints."></textarea>
+    <div class="form__rule"></div>
+  </div>
+
+  <button type="submit" class="btn btn--gold-fill btn--lg" id="submitBtn">
+    <span class="btn__text">Send Inquiry</span>
+    <span class="btn__arrow">→</span>
+  </button>
+
+  <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
+</form>
+
+<script is:inline define:vars={{ contactEmail: SITE.email }}>
+  // Session reference NP-9XXXXX + Web3Forms-with-mailto-fallback submit handler.
+  // Mirrors archive/v1/script.js.
+  (function () {
+    function generateReference() {
+      var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      var ref = 'NP-9';
+      for (var i = 0; i < 5; i++) ref += chars[Math.floor(Math.random() * chars.length)];
+      return ref;
+    }
+
+    var sessionRef = generateReference();
+    var refDisplay = document.getElementById('formRefDisplay');
+    if (refDisplay) refDisplay.textContent = sessionRef;
+    var formRefInput = document.getElementById('formReference');
+    if (formRefInput) formRefInput.value = sessionRef;
+
+    var form = document.getElementById('inquiry-form');
+    var status = document.getElementById('form-status');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        status.textContent = 'Please complete the required fields.';
+        status.className = 'form__status error';
+        form.reportValidity();
+        return;
+      }
+
+      var submitBtn = document.getElementById('submitBtn');
+      var submitText = submitBtn.querySelector('.btn__text');
+      var originalText = submitText.textContent;
+
+      submitBtn.disabled = true;
+      submitText.textContent = 'Sending';
+      status.textContent = '';
+      status.className = 'form__status';
+
+      var data = new FormData(form);
+      var firstName = data.get('firstName') || '';
+      var lastName = data.get('lastName') || '';
+      var fullName = (firstName + ' ' + lastName).trim();
+      var email = data.get('email') || '';
+      var nature = data.get('nature') || '';
+      var context = data.get('context') || '';
+      var ref = data.get('reference') || sessionRef;
+
+      var message =
+        'NEW INQUIRY  ·  ' + ref + '\n' +
+        'Source: ninthprotocol.eu\n\n' +
+        '─────────────────────────────────────────\n' +
+        'Name:      ' + fullName + '\n' +
+        'Email:     ' + email + '\n' +
+        'Category:  ' + nature + '\n' +
+        'Reference: ' + ref + '\n' +
+        '─────────────────────────────────────────\n\n' +
+        'BRIEF CONTEXT\n\n' + context + '\n\n' +
+        '─────────────────────────────────────────\n' +
+        'Submitted: ' + new Date().toUTCString() + '\n';
+
+      data.set('message', message);
+      data.set('replyto', email);
+      data.set('subject', 'New Inquiry — ' + nature + ' — ' + fullName + ' — ' + ref);
+
+      var accessKey = data.get('access_key');
+
+      if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+        var subject = encodeURIComponent('New Inquiry — ' + nature + ' — ' + fullName + ' — ' + ref);
+        var body = encodeURIComponent(message);
+        window.location.href = 'mailto:' + contactEmail + '?subject=' + subject + '&body=' + body;
+        status.textContent = 'Opening your email client. Reference: ' + ref;
+        status.className = 'form__status success';
+        submitBtn.disabled = false;
+        submitText.textContent = originalText;
+        return;
+      }
+
+      try {
+        var response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+        var result = await response.json();
+        if (result.success) {
+          status.textContent = 'Inquiry received. Reference ' + ref + '. We will respond within 24 hours.';
+          status.className = 'form__status success';
+          form.reset();
+          var newRef = generateReference();
+          if (formRefInput) formRefInput.value = newRef;
+          var refDisplayEl = document.getElementById('formRefDisplay');
+          if (refDisplayEl) refDisplayEl.textContent = newRef;
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.error('Form error:', err);
+        status.textContent = 'Submission failed. Please email ' + contactEmail + ' directly.';
+        status.className = 'form__status error';
+      } finally {
+        submitBtn.disabled = false;
+        submitText.textContent = originalText;
+      }
+    });
+  })();
+</script>
+
+<style is:global>
+  .form {
+    margin-top: 32px;
+    padding: 40px 32px;
+    border: 1px solid var(--gold-line);
+    background: rgba(14, 11, 34, 0.4);
+    position: relative;
+  }
+  .form::before, .form::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    border: 1px solid var(--color-gold);
+  }
+  .form::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .form::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .form__meta {
+    display: flex; gap: 36px;
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--gold-line);
+    flex-wrap: wrap;
+  }
+  .form__meta-item { display: flex; flex-direction: column; gap: 6px; }
+  .form__meta-item span {
     font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(192, 161, 30, 0.65);
+  }
+  .form__meta-item strong {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-off-white);
+  }
+
+  .form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .form__field {
+    margin-bottom: 28px;
+  }
+
+  .form__field label {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans);
     font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    text-align: center;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+  }
+  .form__num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(192, 161, 30, 0.55);
+    letter-spacing: 0;
+  }
+
+  .form__field input,
+  .form__field select,
+  .form__field textarea {
+    background: transparent;
+    border: none;
+    padding: 8px 0 12px;
+    font-family: var(--font-serif);
+    font-size: 19px;
+    color: var(--color-off-white);
+    outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    font-weight: 300;
+  }
+
+  .form__field select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3e%3cpath fill='%23C0A11E' d='M6 8L0 0h12z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 10px;
+    cursor: pointer;
+    padding-right: 28px;
+  }
+  .form__field select option { background: var(--color-indigo); color: var(--color-off-white); }
+
+  .form__field textarea {
+    resize: vertical; min-height: 110px; line-height: 1.6;
+  }
+
+  .form__field input::placeholder,
+  .form__field textarea::placeholder {
+    color: rgba(245, 242, 236, 0.3);
+    font-style: italic;
+  }
+
+  .form__rule {
+    position: relative;
+    height: 1px;
+    background: rgba(245, 242, 236, 0.16);
+  }
+  .form__rule::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .form__field input:focus ~ .form__rule::after,
+  .form__field select:focus ~ .form__rule::after,
+  .form__field textarea:focus ~ .form__rule::after { transform: scaleX(1); }
+  .form__field input:not(:placeholder-shown) ~ .form__rule::after,
+  .form__field textarea:not(:placeholder-shown) ~ .form__rule::after {
+    transform: scaleX(1); opacity: 0.5;
+  }
+
+  .form__status {
+    margin-top: 24px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    min-height: 22px;
+  }
+  .form__status.success { color: var(--color-gold-soft); }
+  .form__status.error { color: #E8A0A0; }
+
+  @media (max-width: 720px) {
+    .form { padding: 24px 18px; }
+    .form__meta { gap: 20px; }
+    .form__grid { grid-template-columns: 1fr; gap: 0; }
   }
 </style>

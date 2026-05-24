@@ -1,28 +1,286 @@
 ---
-// Stub. Real §IV Contact port comes fourth in the section pass.
+import { SITE, mailtoUrl, whatsappUrl } from '../../content/site';
+import ArticleLabel from '../primitives/ArticleLabel.astro';
+import NPMark from '../primitives/NPMark.astro';
+import InquiryForm from './InquiryForm.astro';
+
+const article = SITE.articles.contact;
 ---
 
-<section class="stub-section stub-section--contact" id="contact">
-  <span class="stub-section__label">§IV · Contact · [Contact + InquiryForm]</span>
+<section class="section section--contact" id="contact" data-section="contact">
+
+  <div class="contact__bg-mark" aria-hidden="true">
+    <NPMark alt="" />
+  </div>
+
+  <div class="contact__article" data-anim>
+    <ArticleLabel roman={article.roman} name={article.name} />
+  </div>
+
+  <div class="contact__inner">
+
+    <p class="contact__overline" data-anim>Initiate a Mandate</p>
+
+    <h2 class="contact__headline" data-anim>
+      <span class="reveal-line"><span class="reveal-line__inner">If the matter</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner reveal-line__inner--italic">is genuine,</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner">we will respond.</span></span>
+    </h2>
+
+    <p class="contact__sub" data-anim>
+      All inquiries reviewed within 24 hours. Reach us directly by email or WhatsApp, or send a brief through the form. What you share is held in confidence.
+    </p>
+
+    <div class="contact__channels" data-anim>
+
+      <a href={mailtoUrl} class="channel">
+        <div class="channel__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2"/></svg>
+        </div>
+        <div class="channel__body">
+          <span class="channel__label">Email</span>
+          <span class="channel__value">{SITE.email}</span>
+        </div>
+        <span class="channel__arrow">→</span>
+      </a>
+
+      <a href={whatsappUrl} class="channel" target="_blank" rel="noopener">
+        <div class="channel__icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <div class="channel__body">
+          <span class="channel__label">WhatsApp</span>
+          <span class="channel__value">{SITE.whatsapp.display}</span>
+        </div>
+        <span class="channel__arrow">→</span>
+      </a>
+
+    </div>
+
+    <details class="contact__form-toggle" data-anim>
+      <summary>
+        <span>Or send a brief through the form</span>
+        <span class="contact__form-arrow">↓</span>
+      </summary>
+
+      <InquiryForm />
+    </details>
+
+  </div>
+
+  <p class="contact__caption" data-anim>Introductions by appointment.</p>
 </section>
 
-<style>
-  .stub-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 100px 36px 60px;
-  }
-  .stub-section--contact {
+<style is:global>
+  .section--contact {
     background: linear-gradient(180deg, var(--color-indigo-deep) 0%, var(--color-indigo-ink) 100%);
+    color: var(--color-off-white);
+    padding-top: 120px;
+  }
+
+  .contact__bg-mark {
+    --parallax-y: 0;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, calc(-50% + var(--parallax-y) * 1px));
+    width: min(700px, 70vw);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .contact__bg-mark img {
+    width: 100%; height: auto;
+    opacity: 0.04;
+  }
+
+  .contact__article {
+    display: flex; align-items: center;
+    margin-bottom: 56px;
+    max-width: var(--container-narrow);
+    margin-left: auto; margin-right: auto;
+    width: 100%;
+    position: relative; z-index: 2;
+  }
+
+  .contact__inner {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .contact__overline {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 32px;
+    display: inline-flex; align-items: center; gap: 16px;
+    align-self: flex-start;
+  }
+  .contact__overline::before {
+    content: ''; display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--color-gold);
+  }
+
+  .contact__headline {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(42px, 6.5vw, 88px);
+    line-height: 1.02;
+    color: #FFFFFF;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px;
+  }
+
+  .contact__sub {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.55;
+    color: rgba(245, 242, 236, 0.75);
+    max-width: 700px;
+    margin-bottom: 56px;
+  }
+
+  .contact__channels {
+    display: flex; flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .channel {
+    display: flex; align-items: center;
+    gap: 24px;
+    padding: 24px 28px;
+    background: rgba(192, 161, 30, 0.04);
+    border: 1px solid var(--gold-line);
+    transition: all 0.5s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .channel::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--color-gold);
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .channel:hover {
+    background: rgba(192, 161, 30, 0.08);
+    border-color: var(--color-gold);
+    padding-left: 36px;
+  }
+  .channel:hover::before { transform: scaleY(1); transform-origin: top center; }
+  .channel:hover .channel__arrow { transform: translateX(6px); color: var(--color-gold); }
+
+  .channel__icon {
+    width: 44px; height: 44px;
+    flex-shrink: 0;
+    color: var(--color-gold);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-line);
+    border-radius: 50%;
+    transition: background 0.4s ease, transform 0.4s ease;
+  }
+  .channel__icon svg { width: 22px; height: 22px; }
+
+  .channel:hover .channel__icon {
+    background: rgba(192, 161, 30, 0.1);
+    transform: scale(1.05);
+  }
+
+  .channel__body {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+
+  .channel__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     color: var(--color-gold);
   }
-  .stub-section__label {
+
+  .channel__value {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--color-off-white);
+  }
+
+  .channel__arrow {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: rgba(245, 242, 236, 0.6);
+    transition: transform 0.4s var(--ease-out), color 0.4s ease;
+  }
+
+  .contact__form-toggle {
+    margin-top: 8px;
+    border-top: 1px solid var(--gold-line);
+    padding-top: 24px;
+  }
+
+  .contact__form-toggle summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(245, 242, 236, 0.7);
+    padding: 10px 0;
+    transition: color 0.3s ease;
+  }
+  .contact__form-toggle summary::-webkit-details-marker { display: none; }
+  .contact__form-toggle summary:hover { color: var(--color-gold); }
+
+  .contact__form-arrow {
     font-family: var(--font-mono);
+    color: var(--color-gold);
+    transition: transform 0.4s var(--ease-out);
+  }
+  .contact__form-toggle[open] .contact__form-arrow { transform: rotate(180deg); }
+
+  .contact__caption {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
     font-size: 14px;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
+    color: rgba(245, 242, 236, 0.45);
+    letter-spacing: 0.05em;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(192, 161, 30, 0.08);
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 1024px) {
+    .contact__inner { max-width: 100%; }
+  }
+
+  @media (max-width: 720px) {
+    .section--contact { padding-top: 90px; }
+    .contact__article { margin-bottom: 32px; }
+    .contact__headline { font-size: clamp(36px, 10vw, 56px); margin-bottom: 24px; }
+    .contact__sub { font-size: 17px; margin-bottom: 40px; }
+    .channel {
+      padding: 18px 18px;
+      gap: 16px;
+      flex-wrap: nowrap;
+    }
+    .channel:hover { padding-left: 22px; }
+    .channel__icon { width: 38px; height: 38px; }
+    .channel__icon svg { width: 18px; height: 18px; }
+    .channel__value { font-size: 16px; }
   }
 </style>
