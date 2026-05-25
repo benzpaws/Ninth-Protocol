@@ -1,9 +1,11 @@
 ---
 import { SITE } from '../../content/site';
+
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'YOUR_WEB3FORMS_ACCESS_KEY';
 ---
 
 <form id="inquiry-form" class="form" novalidate>
-  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+  <input type="hidden" name="access_key" value={accessKey} />
   <input type="hidden" name="subject" value="New Inquiry · ninthprotocol.eu" />
   <input type="hidden" name="from_name" value="Ninth Protocol Website" />
   <input type="hidden" name="reference" id="formReference" value="" />
