@@ -72,6 +72,10 @@ const transparency = SITE.transparency;
       We chose the former, entirely.
     </p>
 
+    <p class="model__mandate-link" data-anim>
+      <a href="/mandate-process">How a mandate works <span class="arrow">→</span></a>
+    </p>
+
   </div>
 </section>
 
@@ -233,6 +237,27 @@ const transparency = SITE.transparency;
     color: var(--color-gold);
     display: block;
     margin-bottom: 8px;
+  }
+
+  .model__mandate-link {
+    text-align: center;
+    margin-top: 80px;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+  .model__mandate-link a {
+    color: var(--color-gold);
+    transition: color var(--dur-quick) ease;
+  }
+  .model__mandate-link a:hover {
+    color: var(--color-gold-deep);
+  }
+  .model__mandate-link .arrow {
+    display: inline-block;
+    margin-left: 0.5em;
   }
 
   .model__transparency {

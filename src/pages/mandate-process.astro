@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+
+const pageTitle = 'The Mandate Process · Ninth Protocol';
+const pageDescription =
+  'The five-stage protocol Ninth Protocol uses to move a private acquisition from first contact to closed relationship.';
+const pageUrl = 'https://ninthprotocol.eu/mandate-process';
+
+const founding =
+  'Procurement at this tier rewards patience, structure, and discretion. It punishes theatre. Ninth Protocol was built around that recognition. The structure below is how we honor it: five stages, each governed by a single discipline, each designed to remove a different kind of noise from the work. What follows is how a Ninth Protocol mandate moves from first contact to closed relationship, and what continues after.';
+
+const closing = 'The form changes by mandate. The discipline does not.';
+
+const stages = [
+  {
+    label: 'STAGE 1 — INTAKE',
+    discipline: 'Discipline: clarity.',
+    body: 'Every mandate begins with one conversation. We respond to serious inquiry within twenty-four hours, through the channel the client used to reach us. The conversation that follows is screening, not selling. We need four things before we engage: what is being acquired, the budget range, the timeline, and the references that warrant trust on both sides. Some mandates we are well-positioned to handle. Others we decline, and say so plainly. No work begins before the engagement letter is signed by both parties and the engagement fee is received.',
+  },
+  {
+    label: 'STAGE 2 — DILIGENCE',
+    discipline: 'Discipline: restraint.',
+    body: "The scope locked at intake becomes the search brief. We work across the channels appropriate to the object: established dealer relationships, auction houses, direct collector approaches, and private markets that operate below public listing. Each candidate is vetted for authenticity, provenance, condition, and clean title before it reaches the client's attention. The output is a written report. No more than two pages. Recommendation-led, alternatives noted, fluff removed. The client reviews. Questions are answered. Nothing proceeds until the decision is unambiguous.",
+  },
+  {
+    label: 'STAGE 3 — EXECUTION',
+    discipline: 'Discipline: decisiveness.',
+    body: "Once the client has decided, we move quickly. We negotiate on the client's behalf and speak with the seller directly. The client's name and identifying details remain shielded unless the client elects otherwise. Final payment to the seller is held in escrow until the object and its documentation are verified. Logistics, including shipping, insurance, customs, and condition checks in transit, are coordinated through specialists vetted for the asset class. Five categories of risk are tracked at this stage and provisioned against in advance: authentication, title and provenance, counterparty payment fraud, cross-border logistics and customs, and latent condition defects. Surprises are rare because the structure expects them. Contingencies for each are written into the engagement letter.",
+  },
+  {
+    label: 'STAGE 4 — HANDOVER',
+    discipline: 'Discipline: presence.',
+    body: "We prefer to deliver in person. Most often this means meeting the client at a venue of their choosing: a private residence, a hotel suite, a restaurant where they hold standing relationships. The object is inspected one final time in the client's presence. The full documentation pack, including authentication certificates, provenance file, condition report, transaction records, warranties, and insurance papers, is handed over no later than twenty-four hours either side of the object itself. The mandate closes with a written acknowledgment from us, on letterhead, confirming the engagement complete. If in-person delivery is not possible, the client nominates a trusted recipient and the same standards apply.",
+  },
+  {
+    label: 'STAGE 5 — CONTINUING RELATIONSHIP',
+    discipline: 'Discipline: continuity.',
+    body: 'A completed mandate is the start of the relationship, not the end. Each client receives two communications per month and nothing more: a short note from us that opens the door for the next conversation, and an editorial dispatch, Protocol Notes, on the markets we operate in. No promotions. No third-party referrals. No commission relationships dressed up as recommendations. The relationship is held privately and indefinitely. Future mandates begin where the last one closed.',
+  },
+];
+---
+
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  ogTitle={pageTitle}
+  ogDescription={pageDescription}
+  ogUrl={pageUrl}
+>
+  <article class="mandate">
+    <div class="mandate__inner">
+
+      <header class="mandate__header">
+        <h1 class="mandate__title" data-anim>THE MANDATE PROCESS</h1>
+      </header>
+
+      <p class="mandate__founding" data-anim>{founding}</p>
+
+      {stages.map((stage) => (
+        <section class="mandate__stage" data-anim>
+          <h2 class="mandate__stage-label">{stage.label}</h2>
+          <p class="mandate__discipline"><em>{stage.discipline}</em></p>
+          <p class="mandate__body">{stage.body}</p>
+        </section>
+      ))}
+
+      <p class="mandate__closing" data-anim><em>{closing}</em></p>
+
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .mandate {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: calc(120px + env(safe-area-inset-top, 0)) 36px 96px;
+    padding-left: calc(36px + env(safe-area-inset-left, 0));
+    padding-right: calc(36px + env(safe-area-inset-right, 0));
+  }
+
+  .mandate__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .mandate__header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .mandate__title {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 1.02;
+    color: var(--color-indigo);
+    letter-spacing: -0.015em;
+  }
+
+  .mandate__founding {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 24px);
+    line-height: 1.6;
+    color: var(--color-indigo);
+    letter-spacing: -0.005em;
+    margin-bottom: 96px;
+  }
+
+  .mandate__stage {
+    margin-top: 96px;
+  }
+  .mandate__stage:first-of-type {
+    margin-top: 0;
+  }
+
+  .mandate__stage-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--color-gold);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .mandate__discipline {
+    margin-bottom: 24px;
+  }
+  .mandate__discipline em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(17px, 1.8vw, 19px);
+    color: var(--color-gold-deep);
+    letter-spacing: -0.005em;
+  }
+
+  .mandate__body {
+    font-family: var(--font-serif);
+    font-size: clamp(19px, 1.8vw, 20px);
+    line-height: 1.65;
+    color: var(--color-indigo);
+    letter-spacing: -0.005em;
+  }
+
+  .mandate__closing {
+    text-align: center;
+    margin: 128px 0 0;
+  }
+  .mandate__closing em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.4;
+    color: var(--color-gold);
+    letter-spacing: -0.005em;
+  }
+
+  @media (max-width: 720px) {
+    .mandate {
+      padding: calc(96px + env(safe-area-inset-top, 0)) 24px 64px;
+    }
+    .mandate__header { margin-bottom: 48px; }
+    .mandate__title { font-size: clamp(36px, 10vw, 56px); }
+    .mandate__founding { font-size: 18px; line-height: 1.55; margin-bottom: 64px; }
+    .mandate__stage { margin-top: 72px; }
+    .mandate__discipline em { font-size: 17px; }
+    .mandate__body { font-size: 17px; line-height: 1.6; }
+    .mandate__closing { margin-top: 96px; }
+    .mandate__closing em { font-size: 19px; }
+  }
+</style>

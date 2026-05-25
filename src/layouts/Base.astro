@@ -9,14 +9,23 @@ import Footer from '../components/chrome/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogUrl?: string;
 }
 
 const {
   title = SITE.og.title,
   description = 'For those who answer to no one. Ninth Protocol is a private procurement firm for UHNW individuals and family offices. Conflict-free, fiduciary, discreet.',
+  ogTitle,
+  ogDescription,
+  ogUrl,
 } = Astro.props;
 
 const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/').toString();
+const resolvedOgTitle = ogTitle ?? SITE.og.title;
+const resolvedOgDescription = ogDescription ?? SITE.og.description;
+const resolvedOgUrl = ogUrl ?? Astro.site?.toString() ?? 'https://ninthprotocol.eu/';
 ---
 
 <!doctype html>
@@ -30,11 +39,13 @@ const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/'
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <meta property="og:title" content={SITE.og.title} />
-    <meta property="og:description" content={SITE.og.description} />
+    <link rel="canonical" href={resolvedOgUrl} />
+
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.site?.toString() ?? 'https://ninthprotocol.eu/'} />
+    <meta property="og:url" content={resolvedOgUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/assets/np-mark.svg" />
     <link rel="alternate icon" type="image/png" href="/assets/np-mark.png" />
