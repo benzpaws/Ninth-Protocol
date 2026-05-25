@@ -89,10 +89,10 @@ const ogImage = new URL(SITE.og.image, Astro.site ?? 'https://ninthprotocol.eu/'
         if (reduced) {
           dismiss();
         } else if (document.readyState === 'complete') {
-          setTimeout(dismiss, 1900);
+          setTimeout(dismiss, 2700);
         } else {
           window.addEventListener('load', function () {
-            setTimeout(dismiss, 1900);
+            setTimeout(dismiss, 2700);
           });
         }
         setTimeout(dismiss, 4000);
