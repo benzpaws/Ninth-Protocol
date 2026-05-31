@@ -261,6 +261,8 @@ When migrating to Astro: **preserve the visual output exactly first**, then impr
 - The transparency statement (§II intro)
 - The contact details (email, WhatsApp)
 - The brand colors and font stack
+- The site voice is first-person singular "I" throughout. "We", "our", and "us" used in first-person voice are not permitted anywhere on the site.
+- Vignettes at /vignettes are explicitly framed as illustrative composites, not accounts of real transactions. This framing must be preserved in any future edits.
 
 Everything else — animations, layout details, micro-copy, component structure — is open for improvement.
 

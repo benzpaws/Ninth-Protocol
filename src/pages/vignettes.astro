@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+
+const pageTitle = 'Illustrative Mandates · Ninth Protocol';
+const pageDescription =
+  'Composites drawn from the category of mandate Ninth Protocol is built to handle.';
+const pageUrl = 'https://ninthprotocol.eu/vignettes';
+
+const intro = {
+  overline: 'ILLUSTRATIVE MANDATES',
+  headline: 'The kind of work I do.',
+  body: 'These are composites drawn from the category of mandate I am built to handle. They are not accounts of specific transactions. They are offered so that if the situation is familiar, you know where to bring it.',
+};
+
+const vignettes = [
+  {
+    label: 'Automotive & Aviation',
+    paragraphs: [
+      'A collector in Monaco had identified a specific reference he wanted added to his garage. Not a production car. A coachbuilt commission from a small European atelier, one of eleven built, with only three known to be in private hands. His existing network had turned up nothing in eight months. The public market had no record of any of the three changing hands.',
+      'I took the brief. Within the search I identified a likely custodian through a chain of relationships in the continental collector community. The approach was made privately, with no indication of buyer identity. The owner was not actively selling. Over four weeks, through the right intermediaries and without pressure, a conversation became a negotiation. The object was acquired below the client\'s ceiling, with full provenance documentation and original build specification sheets.',
+      'The car was inspected by an independent specialist before any funds moved. It was delivered to Monaco with full logistics coordination, including customs clearance and enclosed transport. The client has since returned for a second mandate.',
+    ],
+  },
+  {
+    label: 'Horology & Collectibles',
+    paragraphs: [
+      'A serious collector had been pursuing a specific reference for two years. Not the standard production variant. The earlier execution, from a limited run, with a particular dial configuration that has not appeared at major auction in over a decade. Retail relationships and public channels had produced nothing. He had been told, more than once, that the piece simply was not available.',
+      'I took the brief without promising an outcome I could not guarantee. The search ran through private collector networks across three markets. A piece matching the exact specification was located in a collection in Europe, held by someone who had not considered selling but who, approached correctly and through the right relationship, was willing to have the conversation.',
+      'Authentication was conducted by an independent specialist with no relationship to either party. The transaction was structured to protect both sides. The piece transferred with full box, papers, and service history. The collector had it on his wrist within six weeks of the initial brief.',
+    ],
+  },
+  {
+    label: 'Experiences & Access',
+    paragraphs: [
+      'A client wanted to mark a particular occasion privately and without compromise. Not a dinner reservation. Not a hotel suite, however well-appointed. Something that had not been done before in the way he wanted it done: a private evening at a venue that does not ordinarily offer private hire, with a specific individual he admired present not as a performer but as a guest.',
+      'This kind of arrangement does not have a price list. It requires the right relationships, the right approach, and the patience to let the conversation develop at the other party\'s pace. I handled every element: the initial outreach, the structure of the arrangement, the logistics, and the discretion required on all sides.',
+      'The evening took place. It was not announced, photographed, or discussed. The client described it as the finest hour of a year that had contained many fine hours. He asked me to begin thinking about the following year before he had left.',
+    ],
+  },
+  {
+    label: 'Logistics & Project Direction',
+    paragraphs: [
+      'A client had acquired a significant vehicle through his own channels before engaging me. The acquisition was clean. What followed was not: restoration specialist selected without a formal brief, scope creep on the build, no fixed timeline, and three months in, no meaningful progress and a six-figure deposit with a workshop that had stopped returning calls.',
+      'I was brought in to resolve the situation. The first step was a full audit: the engagement letter with the workshop, the scope of work agreed, what had been paid, and what had been delivered. The workshop was not acting in bad faith. They were overwhelmed and had underbid. The resolution required renegotiation, not litigation.',
+      'A revised scope was agreed, with milestone payments tied to verified progress and an independent inspector authorised to assess each stage. The build completed four months later, on a timeline the client understood and approved at each step. The vehicle was delivered in the condition specified. The client paid less in total than the original agreement would have cost him.',
+    ],
+  },
+];
+---
+
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  ogTitle={pageTitle}
+  ogDescription={pageDescription}
+  ogUrl={pageUrl}
+>
+  <article class="vignettes">
+    <div class="vignettes__inner">
+
+      <header class="vignettes__header" data-anim>
+        <p class="vignettes__overline">{intro.overline}</p>
+        <h1 class="vignettes__title">{intro.headline}</h1>
+      </header>
+
+      <p class="vignettes__intro" data-anim>{intro.body}</p>
+
+      {vignettes.map((vignette) => (
+        <section class="vignettes__item" data-anim>
+          <h2 class="vignettes__label">{vignette.label}</h2>
+          {vignette.paragraphs.map((paragraph) => (
+            <p class="vignettes__body">{paragraph}</p>
+          ))}
+        </section>
+      ))}
+
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .vignettes {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: calc(120px + env(safe-area-inset-top, 0)) 36px 96px;
+    padding-left: calc(36px + env(safe-area-inset-left, 0));
+    padding-right: calc(36px + env(safe-area-inset-right, 0));
+  }
+
+  .vignettes__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .vignettes__header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .vignettes__overline {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 24px;
+  }
+
+  .vignettes__title {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(48px, 5.6vw, 68px);
+    line-height: 1.02;
+    color: var(--color-indigo);
+    letter-spacing: -0.015em;
+  }
+
+  .vignettes__intro {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(20px, 2.2vw, 24px);
+    line-height: 1.6;
+    color: var(--color-indigo);
+    letter-spacing: -0.005em;
+    margin-bottom: 96px;
+  }
+
+  .vignettes__item {
+    margin-top: 96px;
+  }
+  .vignettes__item:first-of-type {
+    margin-top: 0;
+  }
+
+  .vignettes__label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--color-gold);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .vignettes__body {
+    font-family: var(--font-serif);
+    font-size: clamp(19px, 1.8vw, 20px);
+    line-height: 1.65;
+    color: var(--color-indigo);
+    letter-spacing: -0.005em;
+  }
+  .vignettes__body + .vignettes__body {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 720px) {
+    .vignettes {
+      padding: calc(96px + env(safe-area-inset-top, 0)) 24px 64px;
+    }
+    .vignettes__header { margin-bottom: 48px; }
+    .vignettes__overline { font-size: 11px; margin-bottom: 18px; }
+    .vignettes__title { font-size: clamp(36px, 10vw, 56px); }
+    .vignettes__intro { font-size: 18px; line-height: 1.55; margin-bottom: 64px; }
+    .vignettes__item { margin-top: 72px; }
+    .vignettes__body { font-size: 17px; line-height: 1.6; }
+    .vignettes__body + .vignettes__body { margin-top: 20px; }
+  }
+</style>

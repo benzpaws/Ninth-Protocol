@@ -7,6 +7,8 @@ import NPMark from '../primitives/NPMark.astro';
   <div class="footer__bar"></div>
   <nav class="footer__nav" aria-label="Secondary">
     <a href="/mandate-process" class="footer__nav-link">The mandate process</a>
+    <span class="footer__nav-sep" aria-hidden="true">·</span>
+    <a href="/vignettes" class="footer__nav-link">Illustrative mandates</a>
   </nav>
   <div class="footer__inner">
     <div class="footer__brand">
@@ -109,6 +111,12 @@ import NPMark from '../primitives/NPMark.astro';
   }
   .footer__nav-link:hover {
     color: var(--color-gold);
+  }
+  .footer__nav-sep {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: rgba(245, 242, 236, 0.3);
+    margin: 0 12px;
   }
 
   @media (max-width: 720px) {
