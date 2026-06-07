@@ -1,11 +1,16 @@
 ---
 import { SITE } from '../../content/site';
 import NPMark from '../primitives/NPMark.astro';
+
+// On the homepage the brand smooth-scrolls to the top (#top).
+// On any other page it links back to the homepage root.
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+const brandHref = isHome ? '#top' : '/';
 ---
 
 <header class="topbar" id="topbar">
   <div class="topbar__inner">
-    <a href="#top" class="topbar__brand" aria-label={SITE.name}>
+    <a href={brandHref} class="topbar__brand" aria-label={`${SITE.name} — home`}>
       <span class="topbar__mark">
         <NPMark alt="" />
       </span>

@@ -47,7 +47,7 @@ export const SITE = {
   },
 
   fee: {
-    label: 'My Fee Structure',
+    label: 'Fee Structure',
     tier1: {
       roman: 'Tier I',
       range: '$10,000 – $250,000',
